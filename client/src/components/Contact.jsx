@@ -4,6 +4,10 @@ const Contact = () => {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [status, setStatus] = useState("");
 
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setStatus("Sending...");
@@ -30,32 +34,44 @@ const Contact = () => {
     <section id="contact" className="py-24 bg-swiss-dark px-6">
       <div className="max-w-3xl mx-auto bg-swiss-navy/30 border border-white/5 p-10 rounded-[2rem] backdrop-blur-md">
         <div className="flex justify-center mb-6">
- <img 
-  src="/logo.png" 
-  alt="Tofina" 
-  className="h-24 w-auto mb-4 hover:scale-110 transition-transform duration-500 drop-shadow-[0_0_15px_rgba(1,195,141,0.4)]" 
-/>
-</div>
+          <img 
+            src="/logo.png" 
+            alt="Tofina" 
+            className="h-24 w-auto mb-4 hover:scale-110 transition-transform duration-500 drop-shadow-[0_0_15px_rgba(1,195,141,0.4)]" 
+          />
+        </div>
         <h2 className="text-4xl font-bold text-white mb-2">Let's <span className="text-swiss-green">Connect</span></h2>
         <p className="text-swiss-grey mb-10">Available for freelance opportunities and technical collaborations.</p>
         
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="grid md:grid-cols-2 gap-6">
             <input 
-              type="text" placeholder="Name" 
+              type="text" 
+              name="name"
+              placeholder="Name" 
+              value={formData.name}
+              onChange={handleChange}
+              required
               className="w-full p-4 bg-swiss-dark border border-white/10 rounded-2xl text-white focus:border-swiss-green outline-none transition-all placeholder:text-swiss-grey/50"
-              // ... state logic
             />
             <input 
-              type="email" placeholder="Email" 
+              type="email" 
+              name="email"
+              placeholder="Email" 
+              value={formData.email}
+              onChange={handleChange}
+              required
               className="w-full p-4 bg-swiss-dark border border-white/10 rounded-2xl text-white focus:border-swiss-green outline-none transition-all placeholder:text-swiss-grey/50"
-              // ... state logic
             />
           </div>
           <textarea 
-            placeholder="Your message..." rows="5"
+            name="message"
+            placeholder="Your message..." 
+            rows="5"
+            value={formData.message}
+            onChange={handleChange}
+            required
             className="w-full p-4 bg-swiss-dark border border-white/10 rounded-2xl text-white focus:border-swiss-green outline-none transition-all placeholder:text-swiss-grey/50"
-            // ... state logic
           ></textarea>
           
           <button type="submit" className="w-full py-4 bg-swiss-green text-swiss-dark font-black rounded-2xl hover:brightness-110 hover:shadow-[0_10px_40px_rgba(1,195,141,0.2)] transition-all uppercase tracking-widest text-sm">
