@@ -15,6 +15,27 @@ const transporter = nodemailer.createTransport({
   },
 });
 
+// Dynamic Blog Storage in server/index.js
+let blogPosts = [
+  {
+    title: "My AWS Journey: From Localhost to Cloud Deployments",
+    date: "May 2026",
+    excerpt: "Transitioning traditional systems into AWS S3 storage buckets and EC2 architectures. Here is my performance review...",
+    category: "AWS / Cloud"
+  },
+  {
+    title: "Optimizing High-Fidelity Asset Vetting Systems",
+    date: "April 2026",
+    excerpt: "Building high-speed curation interfaces for creators. A look into vetting mechanisms and automated messaging queues.",
+    category: "Full-Stack Automation"
+  }
+];
+
+// Endpoint to fetch insights dynamically
+app.get('/api/blog', (req, res) => {
+  res.status(200).json(blogPosts);
+});
+
 app.post('/api/contact', async (req, res) => {
   const { name, email, message } = req.body;
 
