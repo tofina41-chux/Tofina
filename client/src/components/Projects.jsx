@@ -1,95 +1,104 @@
-import { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const Projects = () => {
-  const [selectedProject, setSelectedProject] = useState(null);
+  const [projects, setProjects] = useState([]);
 
-  const projects = [
-    { 
-      title: "MYR Art Direction", 
-      desc: "Minimalist curatorial archive & admin suite.", 
-      longDesc: "Designed a high-fidelity digital archive for a professional art director. The core challenge was balancing a minimalist 'gallery' aesthetic with a heavy-duty admin suite. I implemented a custom journal system and a searchable media library with Cloudinary, ensuring the client could update their portfolio without touching a single line of code.",
-      tech: ["React", "Node.js", "MongoDB", "Cloudinary"],
-      link: "#" // Add your link here
-    },
-    { 
-      title: "BS1 Room Booking", 
-      desc: "A full-stack MERN solution for seamless space management.", 
-      longDesc: "A dual-version (BS1/BS2) room management system built to eliminate scheduling friction. I focused on building a robust backend architecture using the MERN stack to handle real-time booking conflicts. The dashboard provides a clean, visual representation of availability, making it accessible for non-technical users.",
-      tech: ["MongoDB", "Express", "React", "Node.js"],
-      link: "#"
-    },
-    { 
-      title: "University Portal", 
-      desc: "Custom PHP & MySQL assignment portal for campus efficiency.", 
-      longDesc: "A centralized assignment and grading portal developed to bridge the gap between students and faculty. Using PHP and MySQL, I architected a relational database that handles secure file submissions and automated deadline tracking. This reduced the administrative load for instructors by 40%.",
-      tech: ["PHP", "MySQL", "Tailwind"],
-      link: "#"
-    }
-  ];
+  useEffect(() => {
+    const fetchProjects = async () => {
+      try {
+        const response = await fetch('http://localhost:5000/api/projects');
+        const data = await response.json();
+        if (Array.isArray(data)) setProjects(data);
+      } catch (err) { 
+        console.error("Error linking projects pipeline:", err); 
+      }
+    };
+    fetchProjects();
+  }, []);
 
   return (
-    <section id="projects" className="py-24 bg-swiss-dark px-6 relative">
+    <section id="projects" className="py-24 bg-swiss-dark px-6">
       <div className="max-w-6xl mx-auto">
-        <h2 className="text-4xl font-bold text-white mb-16 text-center tracking-tight">
-          Featured <span className="text-swiss-green">Work</span>
-        </h2>
         
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((p, i) => (
+        <div className="mb-16">
+          <span className="text-swiss-green font-mono text-xs tracking-[0.4em] uppercase block mb-3">
+            Production / Repositories
+          </span>
+          <h2 className="text-4xl font-black text-white tracking-tight">
+            Selected Architecture<span className="text-swiss-green">.</span>
+          </h2>
+        </div>
+        
+        <div className="grid md:grid-cols-2 gap-8">
+          {projects.map((project) => (
             <div 
-              key={i} 
-              onClick={() => setSelectedProject(p)}
-              className="group bg-swiss-navy/40 border border-white/5 p-8 rounded-3xl hover:border-swiss-green/30 transition-all cursor-pointer relative overflow-hidden"
+              key={project.id} 
+              className="group bg-swiss-navy/40 border border-white/5 rounded-3xl overflow-hidden hover:border-swiss-green/40 transition-all duration-500 shadow-xl flex flex-col justify-between h-full"
             >
-              <h3 className="text-xl font-bold text-white mb-3 group-hover:text-swiss-green transition-colors">{p.title}</h3>
-              <p className="text-swiss-grey mb-6 leading-relaxed text-sm">{p.desc}</p>
-              <span className="text-swiss-green text-xs font-bold uppercase tracking-widest">View Details →</span>
+              <div>
+                {/* Image Frame Container - NO MORE GRAYSCALE */}
+                <div className="aspect-video w-full overflow-hidden bg-swiss-dark border-b border-white/5">
+                  <img 
+                    src={project.imageUrl} 
+                    alt={project.title} 
+                    className="w-full h-full object-cover transform group-hover:scale-102 transition-transform duration-700" 
+                  />
+                </div>
+                
+                {/* Content Block */}
+                <div className="p-8">
+                  <div className="flex gap-2 flex-wrap mb-4">
+                    {project.tags.map((tag, i) => (
+                      <span 
+                        key={i} 
+                        className="text-[10px] font-mono bg-swiss-green/10 border border-swiss-green/20 px-3 py-1 rounded-full text-swiss-green uppercase tracking-wider font-bold"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                  
+                  <h3 className="text-2xl font-black text-white mb-3 tracking-tight group-hover:text-swiss-green transition-colors">
+                    {project.title}
+                  </h3>
+                  
+                  <p className="text-swiss-grey/90 text-sm leading-relaxed mb-6 line-clamp-3">
+                    {project.description}
+                  </p>
+                </div>
+              </div>
+              
+              {/* Operational Anchors Footer */}
+              <div className="px-8 pb-8 pt-2 flex gap-6 text-xs font-mono border-t border-white/5 mt-auto">
+                <a 
+                  href={project.liveLink} 
+                  target="_blank" 
+                  rel="noreferrer" 
+                  className="text-white hover:text-swiss-green transition-colors flex items-center gap-1 font-bold"
+                >
+                  <span>⚡ Launch Live App</span>
+                </a>
+                <a 
+                  href={project.githubLink} 
+                  target="_blank" 
+                  rel="noreferrer" 
+                  className="text-swiss-grey hover:text-white transition-colors flex items-center gap-1"
+                >
+                  <span>📁 View Code Base</span>
+                </a>
+              </div>
+
             </div>
           ))}
         </div>
+
+        {projects.length === 0 && (
+          <p className="text-center font-mono text-xs text-swiss-grey/40 py-12">
+            No live deployment packages found in core pipeline.
+          </p>
+        )}
+
       </div>
-
-      {/* --- MODAL OVERLAY --- */}
-      {selectedProject && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-6 backdrop-blur-xl bg-swiss-dark/80">
-          <div className="bg-swiss-navy border border-white/10 max-w-2xl w-full rounded-[2rem] p-8 md:p-12 relative shadow-2xl animate-in fade-in zoom-in duration-300">
-            
-            {/* Close Button */}
-            <button 
-              onClick={() => setSelectedProject(null)}
-              className="absolute top-6 right-6 text-swiss-grey hover:text-white transition-colors"
-            >
-              ✕ Close
-            </button>
-
-            <h3 className="text-3xl font-bold text-white mb-4">{selectedProject.title}</h3>
-            
-            <div className="flex flex-wrap gap-2 mb-8">
-              {selectedProject.tech.map(t => (
-                <span key={t} className="text-[10px] font-bold uppercase tracking-widest text-swiss-green bg-swiss-green/10 px-3 py-1 rounded-full">
-                  {t}
-                </span>
-              ))}
-            </div>
-
-            <p className="text-white/80 text-lg leading-relaxed mb-8">
-              {selectedProject.longDesc}
-            </p>
-
-            <div className="flex gap-4">
-              <a href={selectedProject.link} className="px-8 py-3 bg-swiss-green text-swiss-dark rounded-full font-bold hover:brightness-110 transition-all">
-                Live Demo
-              </a>
-              <button 
-                onClick={() => setSelectedProject(null)}
-                className="px-8 py-3 border border-swiss-grey text-white rounded-full font-bold hover:bg-white/5 transition-all"
-              >
-                Back to Work
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
     </section>
   );
 };

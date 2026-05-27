@@ -49,3 +49,48 @@ html, body, #root {
 .mask-linear {
   mask-image: linear-gradient(to right, transparent, white 20%, white 80%, transparent);
 }
+
+/* Custom Neubrutalist Light Mode Style Definitions Override */
+html.light body {
+  background-color: #F4F7FA !important;
+  color: #121824 !important;
+}
+
+html.light #projects, 
+html.light #blog, 
+html.light #contact,
+html.light main {
+  background-color: #F4F7FA !important;
+}
+
+html.light h2, 
+html.light h3,
+html.light .text-white {
+  color: #121824 !important;
+}
+
+html.light .bg-swiss-navy,
+html.light .bg-swiss-navy\/30 {
+  background-color: #FFFFFF !important;
+  border-color: #121824/10 !important;
+  box-shadow: 4px 4px 0px #121824 !important; /* Premium Crisp High-contrast Neubrutalist Shadow */
+}
+
+html.light .text-swiss-grey {
+  color: #4A5568 !important;
+}
+
+/* Add this right inside your html.light block in index.css */
+html.light #home {
+  background-color: #F3F4F6 !important;
+}
+
+html.light #home p,
+html.light #home div {
+  color: #0A0F1D !important;
+}
+
+/* Ensure the sub-tech tags (Automation, UI/UX) stay readable */
+html.light #home .text-swiss-grey\/60 {
+  color: #4B5563 !important;
+}
