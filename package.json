@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/tofina41-chux/Tofina#readme",
   "dependencies": {
+    "@supabase/supabase-js": "^2.106.2",
     "cors": "^2.8.6",
     "dotenv": "^17.3.1",
     "express": "^5.2.1",
