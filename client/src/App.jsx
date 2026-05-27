@@ -8,20 +8,23 @@ import Contact from './components/Contact';
 import About from './components/About';
 import Footer from './components/Footer';
 import Blog from './components/Blog'; 
+import Admin from './components/Admin'; // 1. Import your Admin panel
 
 function App() {
   const [loading, setLoading] = useState(true);
 
+  // 2. Simple, lightweight router switch:
+  // If the browser URL is 'localhost:5173/admin', render the login panel instead!
+  if (window.location.pathname === '/admin') {
+    return <Admin />;
+  }
+
   return (
     <>
-      {/* 1. Show Splash Screen if loading is true */}
       {loading && <Splash onComplete={() => setLoading(false)} />}
 
-      {/* 2. Content is hidden while loading, then fades in */}
       <main className={`bg-swiss-dark min-h-screen selection:bg-swiss-green/30 transition-opacity duration-1000 ${loading ? 'opacity-0' : 'opacity-100'}`}>
         <Navbar />
-        
-        {/* We call the components directly. They already have their own IDs inside! */}
         <Hero />
         <Projects />
         <About />

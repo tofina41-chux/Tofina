@@ -1,42 +1,130 @@
+import React, { useState, useEffect } from 'react';
+
 const Blog = () => {
-  const posts = [
-    {
-      title: "My AWS Journey: From Localhost to Cloud",
-      date: "March 2026",
-      excerpt: "Transitioning from traditional hosting to AWS S3 and EC2. Here is what I learned about cloud architecture...",
-      category: "AWS / Cloud"
-    },
-    {
-      title: "Building Frictionless UX for Local Businesses",
-      date: "Feb 2026",
-      excerpt: "How I used React and automation to help a restaurant in Kenya grow their digital presence.",
-      category: "UX Design"
-    }
-  ];
+  const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  // Track which unique insight post is currently open in full view
+  const [selectedPost, setSelectedPost] = useState(null);
+
+  useEffect(() => {
+    const fetchPosts = async () => {
+      try {
+        const response = await fetch('http://localhost:5000/api/blog');
+        const data = await response.json();
+        
+        if (Array.isArray(data)) {
+          setPosts(data);
+        }
+      } catch (err) {
+        console.error("Error connecting to server insights pipeline:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    
+    fetchPosts();
+  }, []);
 
   return (
-    <section id="blog" className="py-24 bg-swiss-dark px-6">
-      <div className="max-w-5xl mx-auto">
-        <h2 className="text-4xl font-bold text-white mb-12">Latest <span className="text-swiss-green">Insights</span></h2>
+    <section id="blog" className="py-24 bg-swiss-dark px-6 border-t border-white/5 relative">
+      <div className="max-w-6xl mx-auto">
         
+        <div className="flex flex-col items-center mb-16 text-center">
+          <span className="text-swiss-green font-mono text-xs tracking-[0.4em] uppercase mb-3">
+            Editorial / Streams
+          </span>
+          <h2 className="text-4xl font-black text-white tracking-tight">
+            Latest Insights<span className="text-swiss-green">.</span>
+          </h2>
+        </div>
+
+        {/* Live Card Grid */}
         <div className="grid md:grid-cols-2 gap-8">
-          {posts.map((post, i) => (
-            <article key={i} className="group cursor-pointer">
-              <div className="p-1 bg-gradient-to-br from-white/10 to-transparent rounded-3xl transition-all group-hover:from-swiss-green/50">
-                <div className="bg-swiss-navy p-8 rounded-[1.4rem]">
-                  <span className="text-swiss-green font-mono text-xs uppercase tracking-widest">{post.category}</span>
-                  <h3 className="text-2xl font-bold text-white mt-4 mb-4 group-hover:text-swiss-green transition-colors">{post.title}</h3>
-                  <p className="text-swiss-grey leading-relaxed mb-6">{post.excerpt}</p>
-                  <div className="flex justify-between items-center">
-                    <span className="text-white/30 text-xs">{post.date}</span>
-                    <span className="text-swiss-green font-bold text-sm tracking-tighter">READ STORY →</span>
-                  </div>
+          {posts.map((post) => (
+            <div 
+              key={post.id || post.title} 
+              className="group bg-swiss-navy/30 border border-white/5 p-8 rounded-3xl backdrop-blur-md hover:border-swiss-green/30 transition-all duration-500 flex flex-col justify-between"
+            >
+              <div>
+                <div className="flex justify-between items-center mb-6 font-mono text-xs text-swiss-grey">
+                  <span className="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-swiss-green">
+                    {post.category}
+                  </span>
+                  <span>{post.date}</span>
                 </div>
+                
+                <h3 className="text-xl font-bold text-white tracking-tight mb-4 group-hover:text-swiss-green transition-colors leading-snug">
+                  {post.title}
+                </h3>
+                
+                <p className="text-swiss-grey/80 text-sm leading-relaxed mb-6 line-clamp-3">
+                  {post.excerpt}
+                </p>
               </div>
-            </article>
+              
+              {/* Clicking this now assigns the specific post to the modal view state */}
+              <div 
+                onClick={() => setSelectedPost(post)}
+                className="flex items-center gap-2 text-xs font-mono text-white group-hover:text-swiss-green transition-colors cursor-pointer w-fit pt-4 select-none"
+              >
+                <span>Read System File</span>
+                <span className="transform group-hover:translate-x-1 transition-transform">→</span>
+              </div>
+            </div>
           ))}
         </div>
+
+        {loading && (
+          <p className="text-center font-mono text-xs text-swiss-green/60 animate-pulse">
+            Syncing insight nodes...
+          </p>
+        )}
+
+        {!loading && posts.length === 0 && (
+          <p className="text-center font-mono text-xs text-swiss-grey/40">
+            No transmission segments detected.
+          </p>
+        )}
       </div>
+
+      {/* --- SWISSBORG SYSTEM TERMINAL OVERLAY MODAL --- */}
+      {selectedPost && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 backdrop-blur-xl bg-swiss-dark/80 transition-all duration-300">
+          
+          {/* Backdrop Click Closer Rule */}
+          <div className="absolute inset-0" onClick={() => setSelectedPost(null)}></div>
+          
+          <div className="relative w-full max-w-2xl bg-swiss-navy border border-white/10 rounded-[2rem] p-8 md:p-10 shadow-2xl z-10 transform scale-100 animate-in fade-in zoom-in-95 duration-200">
+            
+            {/* Top Operational Header info panel */}
+            <div className="flex justify-between items-center border-b border-white/5 pb-4 mb-6 font-mono text-xs text-swiss-grey">
+              <span className="text-swiss-green uppercase tracking-widest">
+                [ FILE: {selectedPost.category} ]
+              </span>
+              <span>{selectedPost.date}</span>
+            </div>
+
+            {/* Core Content Layout Area */}
+            <h3 className="text-2xl md:text-3xl font-black text-white tracking-tight mb-6 leading-tight">
+              {selectedPost.title}
+            </h3>
+            
+            <p className="text-white/80 text-base leading-relaxed mb-8 whitespace-pre-line">
+              {selectedPost.excerpt}
+            </p>
+
+            {/* Action Operations Footer Button Container */}
+            <div className="flex justify-end border-t border-white/5 pt-6">
+              <button 
+                onClick={() => setSelectedPost(null)}
+                className="px-6 py-3 bg-white/5 hover:bg-white/10 text-white font-mono text-xs tracking-wider uppercase rounded-xl border border-white/10 transition-all"
+              >
+                Close File Terminal
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 };
