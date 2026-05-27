@@ -8,15 +8,20 @@ import Contact from './components/Contact';
 import About from './components/About';
 import Footer from './components/Footer';
 import Blog from './components/Blog'; 
-import Admin from './components/Admin'; // 1. Import your Admin panel
+import AdminGateway from './components/AdminGateway'; // Use our fully wired upload console
 
 function App() {
   const [loading, setLoading] = useState(true);
 
-  // 2. Simple, lightweight router switch:
-  // If the browser URL is 'localhost:5173/admin', render the login panel instead!
+  // 🔐 ROUTE GUARD PATHWAY: 
+  // If you manually navigate to /admin, it takes over the screen with the dashboard control deck!
   if (window.location.pathname === '/admin') {
-    return <Admin />;
+    return (
+      <div className="bg-swiss-dark min-h-screen flex items-center justify-center">
+        {/* We redirect the exit close trigger back to your main portfolio homepage */}
+        <AdminGateway onClose={() => window.location.href = '/'} />
+      </div>
+    );
   }
 
   return (
