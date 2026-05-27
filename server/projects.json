@@ -1,0 +1,16 @@
+[
+  {
+    "id": 1779875690591,
+    "title": "Myrna Art Direction",
+    "description": "A high-end, minimalist digital archive built for Myrna, a Mombasa-based Art Director and Curator. This platform serves as a visual portfolio, a journal for field notes, and a catalog of professional services.",
+    "liveLink": "https://myr-art-direction.vercel.app/",
+    "githubLink": "https://github.com/tofina41-chux/MyrnA",
+    "tags": [
+      "React",
+      "Node.js",
+      "Express",
+      "MongoDB"
+    ],
+    "imageUrl": "http://localhost:5000/uploads/projectImage-1779875690525-347562382.png"
+  }
+]
