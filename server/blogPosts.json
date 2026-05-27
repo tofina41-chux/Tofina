@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1779817988672,
+    "title": "The Anti-Aesthetic: Why Neubrutalism Wins Over Flat Corporate Design",
+    "date": "May 2026",
+    "excerpt": "Corporate minimalism is beginning to feel indistinguishable. By embracing Neubrutalism—heavy black borders, asymmetric layouts, raw grid structures, and electric color accents like high-contrast green—we break conventional pattern design rules to capture visitor retention and amplify brand recall.",
+    "category": "UI/UX Optimization"
+  },
+  {
+    "id": 1779817960449,
+    "title": "Decoupling Workflows: Managing Async State Changes with Django Signals",
+    "date": "May 2026",
+    "excerpt": "Hardcoding database updates directly inside views leads to bottlenecked user experiences. By implementing event-driven Django signals, we can trigger automated verification status pipelines and fire real-time stakeholder communication models asynchronously without jamming the core runtime thread.",
+    "category": "Full-Stack Automation"
+  },
+  {
+    "id": 1779817928126,
+    "title": "Architecting Asset Storage: Transitioning to AWS S3 Buckets",
+    "date": "May 2026",
+    "excerpt": "Moving media management out of local server runtimes and into decoupled cloud architecture. A deep dive into structuring IAM access policies, securing asset visibility streams, and utilizing public URL caching strategies to drastically decrease backend processing overhead for high-traffic platforms.",
+    "category": "AWS / Cloud"
+  },
+  {
+    "id": 1,
+    "title": "My AWS Journey: From Localhost to Cloud Deployments",
+    "date": "May 2026",
+    "excerpt": "Transitioning traditional systems into AWS S3 storage buckets and EC2 architectures. Here is my performance review...",
+    "category": "AWS / Cloud"
+  }
+]
