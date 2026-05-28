@@ -1,9 +1,25 @@
 import React, { useState, useEffect } from 'react';
 
 const About = () => {
-  // Pulling directly from your live server URL path
+  // Pulling from the server so the displayed avatar updates after admin upload
   const [profileImg, setProfileImg] = useState("http://localhost:5000/uploads/avatar.jpg");
   const [uploading, setUploading] = useState(false);
+
+  useEffect(() => {
+    const loadProfileImage = async () => {
+      try {
+        const response = await fetch('http://localhost:5000/api/profile-image');
+        const data = await response.json();
+        if (response.ok && data.success && data.imageUrl) {
+          setProfileImg(data.imageUrl);
+        }
+      } catch (err) {
+        console.error('Failed to load current profile image:', err);
+      }
+    };
+
+    loadProfileImage();
+  }, []);
 
   const handleImageChange = async (e) => {
     const file = e.target.files[0];

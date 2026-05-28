@@ -2,10 +2,10 @@ import { Linkedin, Github, MessageCircle, Instagram } from 'lucide-react';
 
 const Footer = () => {
   const socials = [
-    { name: "LinkedIn", url: "#", icon: <Linkedin size={20} /> },
+    { name: "LinkedIn", url: "https://www.linkedin.com/in/tofina41-chux", icon: <Linkedin size={20} /> },
     { name: "GitHub", url: "https://github.com/tofina41-chux", icon: <Github size={20} /> },
     { name: "WhatsApp", url: "https://wa.me/0743173996", icon: <MessageCircle size={20} /> },
-    { name: "Instagram", url: "#", icon: <Instagram size={20} /> }
+    { name: "Instagram", url: "https://www.instagram.com/tofina41.chux", icon: <Instagram size={20} /> }
   ];
 
   return (

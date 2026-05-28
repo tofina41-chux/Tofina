@@ -71,18 +71,18 @@ const Projects = () => {
               {/* Operational Anchors Footer */}
               <div className="px-8 pb-8 pt-2 flex gap-6 text-xs font-mono border-t border-white/5 mt-auto">
                 <a 
-                  href={project.liveLink} 
+                  href={project.liveLink || '#'} 
                   target="_blank" 
                   rel="noreferrer" 
-                  className="text-white hover:text-swiss-green transition-colors flex items-center gap-1 font-bold"
+                  className={`transition-colors flex items-center gap-1 font-bold ${project.liveLink ? 'text-white hover:text-swiss-green' : 'text-swiss-grey cursor-not-allowed opacity-60'}`}
                 >
                   <span>⚡ Launch Live App</span>
                 </a>
                 <a 
-                  href={project.githubLink} 
+                  href={project.githubLink || '#'} 
                   target="_blank" 
                   rel="noreferrer" 
-                  className="text-swiss-grey hover:text-white transition-colors flex items-center gap-1"
+                  className={`transition-colors flex items-center gap-1 ${project.githubLink ? 'text-swiss-grey hover:text-white' : 'text-swiss-grey cursor-not-allowed opacity-60'}`}
                 >
                   <span>📁 View Code Base</span>
                 </a>
