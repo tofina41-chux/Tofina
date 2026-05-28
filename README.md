@@ -1,20 +1,24 @@
-# Tofina — Deployment Notes
+# Tofina Portfolio 
 
-This repository contains a React frontend (`client/`) and a legacy Express backend (`server/`). To avoid running two paid services you can deploy the frontend to Vercel and host backend logic as Vercel Serverless API routes (already scaffolded under `client/api/`). The existing Express app is kept for local development and fallback.
+The live production deployment can be accessed at: tofina-portfolio.vercel.app
+A production-ready, secure, full-stack portfolio platform and micro-Content Management System (CMS) built to showcase full-stack web applications, publish professional tech insights, manage media assets, and handle direct client communication.
 
-## What I added
-- Serverless API scaffold under `client/api/` to run on Vercel (Supabase-backed):
-  - `_supabase.js` — Supabase admin client
-  - `projects.js` — `GET` / `POST` to manage projects and upload images to Supabase Storage
-  - `blog.js` — `GET` / `POST` for blog posts
-  - `profile-image.js` — `GET` profile image
-  - `contact.js` — `POST` contact form (uses SMTP via Nodemailer)
-  - `upload-profile.js` — `POST` upload profile image (multipart)
-  - `upload-cv.js` — `POST` upload CV PDF (multipart)
+## Key Features
+```
+Dynamic Project Showcasing: Full listing layout designed to feature live web platforms like Sanaa-Sync, BizApp_Central, and MyrnA Art Direction with complete metrics, tags, live deployment URLs, and code repository links.
 
-- Frontend changes to use `API_BASE` environment variable (`client/src/api.js`).
+Secure Admin Gateway Console: Cryptographic token isolation powered by a robust backend middleware rule checking custom authentication headers on administrative endpoints.
 
-## Required Vercel environment variables
+Hybrid Data Architecture: Low-latency file-system JSON database engines used to host layout and textual structures, integrated seamlessly with a live-streaming cloud pipeline.
+
+Direct-to-Cloud Upload System: An optimized memory buffer middleware setup using Multer to route incoming files straight to Supabase Object Storage buckets without writing data onto the application host disk.
+
+CV & Profile Flipper Sync: Automated administrative modules to instantly swap out public resume PDFs or profile avatar images directly inside the portfolio-assets cloud bucket.
+
+Outbound Communication Pipeline: A fully isolated contact intake form that hooks into Nodemailer to stream customer messages and project inquiries cleanly into the administrator's email inbox.
+```
+
+## Technical Stack
 Set these in the Vercel project settings (Environment Variables):
 
 - `SUPABASE_URL` — your Supabase project URL (e.g. `https://xyz.supabase.co`)
@@ -24,7 +28,7 @@ Set these in the Vercel project settings (Environment Variables):
 - `EMAIL_HOST` — (optional) SMTP host, defaults to `smtp.gmail.com`
 - `EMAIL_PORT` — (optional) SMTP port, defaults to `587`
 - `CONTACT_RECEIVER` — (optional) email to forward contact form messages to
-- `VITE_API_URL` — public API base URL (e.g. `https://your-vercel-deployment.vercel.app`)
+- `VITE_API_URL` — public API base URL (e.g. `https://tofina-portfolio.vercel.app`)
 
 Important: Prefix frontend-exposed variables with `VITE_` (already done for `VITE_API_URL`). Do not expose `SUPABASE_SERVICE_ROLE_KEY` in client-side code.
 
