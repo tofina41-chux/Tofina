@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { API_BASE } from '../api';
 
 const AdminGateway = ({ onClose }) => {
   const [secretKey, setSecretKey] = useState('');
@@ -28,8 +29,8 @@ const AdminGateway = ({ onClose }) => {
   // Fetch data records directly from the JSON files via backend API
   const fetchActiveWorkspaceData = async () => {
     try {
-      const projRes = await fetch('http://localhost:5000/api/projects');
-      const blogRes = await fetch('http://localhost:5000/api/blog');
+      const projRes = await fetch(`${API_BASE}/api/projects`);
+      const blogRes = await fetch(`${API_BASE}/api/blog`);
       if (projRes.ok) {
         const pData = await projRes.json();
         setActiveProjectsList(pData);
@@ -64,7 +65,7 @@ const AdminGateway = ({ onClose }) => {
   const handleItemDelete = async (targetId, endpointPath) => {
     if (!window.confirm("⚠️ Confirm complete deletion of this entry record from cloud and database file systems?")) return;
     try {
-      const response = await fetch(`http://localhost:5000/api/${endpointPath}/${targetId}`, {
+      const response = await fetch(`${API_BASE}/api/${endpointPath}/${targetId}`, {
         method: 'DELETE',
         headers: { 'X-Admin-Auth': secretKey }
       });
@@ -102,7 +103,7 @@ const AdminGateway = ({ onClose }) => {
     formData.append('image', projectFile);
 
     try {
-      const response = await fetch('http://localhost:5000/api/projects', {
+      const response = await fetch(`${API_BASE}/api/projects`, {
         method: 'POST',
         headers: { 'X-Admin-Auth': secretKey },
         body: formData
@@ -137,7 +138,7 @@ const AdminGateway = ({ onClose }) => {
     formData.append('cv', cvFile);
 
     try {
-      const response = await fetch('http://localhost:5000/api/upload-cv', {
+      const response = await fetch(`${API_BASE}/api/upload-cv`, {
         method: 'POST',
         headers: { 'X-Admin-Auth': secretKey },
         body: formData
@@ -169,7 +170,7 @@ const AdminGateway = ({ onClose }) => {
     formData.append('profileImage', profileFile);
 
     try {
-      const response = await fetch('http://localhost:5000/api/upload-profile', {
+      const response = await fetch(`${API_BASE}/api/upload-profile`, {
         method: 'POST',
         headers: { 'X-Admin-Auth': secretKey },
         body: formData

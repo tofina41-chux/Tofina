@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { API_BASE } from '../api';
 
 const Hero = () => {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
@@ -54,7 +55,7 @@ const Hero = () => {
   useEffect(() => {
     const fetchDashboardImages = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api/projects');
+        const response = await fetch(`${API_BASE}/api/projects`);
         const data = await response.json();
         if (data && data.length > 0) {
           const dashboardImages = data
@@ -193,7 +194,7 @@ const Hero = () => {
             </a>
             
             <a 
-              href="http://localhost:5000/uploads/Cynthia_Wafula_CV.pdf" 
+              href={`${API_BASE}/uploads/Cynthia_Wafula_CV.pdf`} 
               download="Cynthia_Wafula_CV.pdf"
               target="_blank"
               rel="noreferrer"

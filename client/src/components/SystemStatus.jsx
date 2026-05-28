@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { API_BASE } from '../api';
 import SystemStatus from './SystemStatus'; // Brings in the live tracking clock node
 
 const Hero = () => {
@@ -15,7 +16,7 @@ const Hero = () => {
   useEffect(() => {
     const fetchDashboardImages = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api/projects');
+        const response = await fetch(`${API_BASE}/api/projects`);
         const data = await response.json();
         
         if (data && data.length > 0) {
@@ -130,7 +131,7 @@ const Hero = () => {
             </a>
             
             <a 
-              href="http://localhost:5000/uploads/Cynthia_Wafula_CV.pdf" 
+              href={`${API_BASE}/uploads/Cynthia_Wafula_CV.pdf`} 
               download="Cynthia_Wafula_CV.pdf"
               target="_blank"
               rel="noreferrer"

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { API_BASE } from '../api';
 
 const Blog = () => {
   const [posts, setPosts] = useState([]);
@@ -8,7 +9,7 @@ const Blog = () => {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api/blog');
+        const response = await fetch(`${API_BASE}/api/blog`);
         const data = await response.json();
         if (Array.isArray(data)) setPosts(data);
       } catch (err) {

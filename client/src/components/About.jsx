@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react';
+import { API_BASE } from '../api';
 
 const About = () => {
   // Pulling from the server so the displayed avatar updates after admin upload
-  const [profileImg, setProfileImg] = useState("http://localhost:5000/uploads/avatar.jpg");
+  const [profileImg, setProfileImg] = useState(`${API_BASE}/uploads/avatar.jpg`);
   const [uploading, setUploading] = useState(false);
 
   useEffect(() => {
     const loadProfileImage = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api/profile-image');
+        const response = await fetch(`${API_BASE}/api/profile-image`);
         const data = await response.json();
         if (response.ok && data.success && data.imageUrl) {
           setProfileImg(data.imageUrl);
@@ -31,7 +32,7 @@ const About = () => {
     setUploading(true);
 
     try {
-      const response = await fetch('http://localhost:5000/api/upload-profile', {
+      const response = await fetch(`${API_BASE}/api/upload-profile`, {
         method: 'POST',
         body: formData, // Sending multi-part form streaming data
       });
