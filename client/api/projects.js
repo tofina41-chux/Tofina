@@ -1,4 +1,5 @@
 import { supabaseAdmin } from './_supabase.js';
+import { requireAdminAuth } from './_adminAuth.js';
 
 export async function GET() {
   try {
@@ -11,6 +12,9 @@ export async function GET() {
 }
 
 export async function POST(request) {
+  const authError = requireAdminAuth(request);
+  if (authError) return authError;
+
   try {
     const form = await request.formData();
     const title = form.get('title');
@@ -32,8 +36,12 @@ export async function POST(request) {
       if (uploadError) {
         console.error('Supabase upload error', uploadError);
       } else {
-        const { publicURL } = supabaseAdmin.storage.from('portfolio-assets').getPublicUrl(fileName);
-        imageUrl = publicURL;
+        const { data: publicUrlData, error: publicUrlError } = await supabaseAdmin.storage.from('portfolio-assets').getPublicUrl(fileName);
+        if (publicUrlError) {
+          console.error('Supabase public URL error', publicUrlError);
+        } else {
+          imageUrl = publicUrlData.publicUrl;
+        }
       }
     }
 
