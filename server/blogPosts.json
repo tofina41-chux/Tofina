@@ -27,12 +27,5 @@
     "date": "May 2026",
     "excerpt": "Moving media management out of local server runtimes and into decoupled cloud architecture. A deep dive into structuring IAM access policies, securing asset visibility streams, and utilizing public URL caching strategies to drastically decrease backend processing overhead for high-traffic platforms.",
     "category": "AWS / Cloud"
-  },
-  {
-    "id": 1,
-    "title": "My AWS Journey: From Localhost to Cloud Deployments",
-    "date": "May 2026",
-    "excerpt": "Transitioning traditional systems into AWS S3 storage buckets and EC2 architectures. Here is my performance review...",
-    "category": "AWS / Cloud"
   }
 ]
