@@ -64,10 +64,7 @@ const About = () => {
             <img 
               src={profileImg} 
               alt="Cynthia Wafula" 
-              onError={() => setProfileImg("https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80")}
-              className="w-full h-full object-cover grayscale contrast-115 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700 ease-out"
-            />
-            
+              onError={() => setProfileImg("https://6a2b01f09e041c30a1857ea5.imgix.net/images/BackgroundEraser_20260505_212621643.png?__hstc=158051173.539e8a62a34e9b8c52938b2d9900832a.1781203370373.1781203370373.1781210269202.2&__hssc=158051173.1.1781210269202&__hsfp=1e21dac6141d1d1a1f8b3b69cd3f8d2f")}
     
 
             <div className="absolute bottom-6 left-6 z-20 pointer-events-none">
