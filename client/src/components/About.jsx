@@ -3,7 +3,7 @@ import { API_BASE } from '../api';
 
 const About = () => {
   // Pulling from the server so the displayed avatar updates after admin upload
-  const [profileImg, setProfileImg] = useState(`${API_BASE}/uploads/avatar.jpg`);
+  const [profileImg, setProfileImg] = useState("https://6a2b01f09e041c30a1857ea5.imgix.net/images/BackgroundEraser_20260505_212621643.png?__hstc=158051173.539e8a62a34e9b8c52938b2d9900832a.1781203370373.1781203370373.1781210269202.2&__hssc=158051173.1.1781210269202&__hsfp=1e21dac6141d1d1a1f8b3b69cd3f8d2f");
   const [uploading, setUploading] = useState(false);
 
   useEffect(() => {
@@ -61,11 +61,14 @@ const About = () => {
           {/* Visual Side with Built-in Admin Upload Control */}
           <div className="relative aspect-[4/5] rounded-3xl overflow-hidden group shadow-2xl bg-swiss-dark flex items-center justify-center">
             
-            <img 
-              src={profileImg} 
-              alt="Cynthia Wafula" 
-              onError={() => setProfileImg("https://6a2b01f09e041c30a1857ea5.imgix.net/images/BackgroundEraser_20260505_212621643.png?__hstc=158051173.539e8a62a34e9b8c52938b2d9900832a.1781203370373.1781203370373.1781210269202.2&__hssc=158051173.1.1781210269202&__hsfp=1e21dac6141d1d1a1f8b3b69cd3f8d2f")}
-    
+            <img
+              src={profileImg}
+              alt="Cynthia Wafula"
+              onError={(e) => {
+                e.currentTarget.src = "https://6a2b01f09e041c30a1857ea5.imgix.net/images/BackgroundEraser_20260505_212621643.png?__hstc=158051173.539e8a62a34e9b8c52938b2d9900832a.1781203370373.1781203370373.1781210269202.2&__hssc=158051173.1.1781210269202&__hsfp=1e21dac6141d1d1a1f8b3b69cd3f8d2f";
+              }}
+              className="w-full h-full object-cover grayscale contrast-115 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700 ease-out"
+            />
 
             <div className="absolute bottom-6 left-6 z-20 pointer-events-none">
               <p className="text-xs font-mono tracking-widest text-swiss-green uppercase mb-1">Identity</p>
