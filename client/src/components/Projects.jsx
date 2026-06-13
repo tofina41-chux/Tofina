@@ -12,12 +12,12 @@ const projects = [
   },
   {
     id: 2,
-    title: 'Cloud Sync Admin',
+    title: 'My portfolio',
     description: 'A modern cloud operations interface with serverless deployment patterns, automated build sync, and secure token-based user flows for enterprise tools.',
     tags: ['AWS', 'Serverless', 'Design'],
-    imageUrl: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=1200&auto=format&fit=crop&q=80',
+    imageUrl: 'https://6a2b01f09e041c30a1857ea5.imgix.net/images/Screenshot%202026-06-13%20235717.png',
     liveLink: 'https://tofina-portfolio.vercel.app',
-    githubLink: 'https://github.com/your-username/cloud-sync-admin'
+    githubLink: 'https://github.com/tofina41-chux/Tofina'
   },
   {
     id: 3,
@@ -26,7 +26,7 @@ const projects = [
     tags: ['UI/UX', 'Performance', 'Design'],
     imageUrl: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1200&auto=format&fit=crop&q=80',
     liveLink: 'https://tofina-portfolio.vercel.app',
-    githubLink: 'https://github.com/your-username/design-ops-system'
+    githubLink: 'https://github.com/tofina41-chux/'
   }
 ];
 

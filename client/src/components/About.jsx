@@ -1,7 +1,7 @@
 import React from 'react';
 
 const About = () => {
-  const profileImg = "https://6a2b01f09e041c30a1857ea5.imgix.net/images/BackgroundEraser_20260505_212621643.png?__hstc=158051173.539e8a62a34e9b8c52938b2d9900832a.1781203370373.1781210269202.2&__hssc=158051173.1.1781210269202&__hsfp=1e21dac6141d1d1a1f8b3b69cd3f8d2f";
+  const profileImg = "https://6a2b01f09e041c30a1857ea5.imgix.net/myr/Screenshot%202026-05-27%20152125.png";
 
   return (
     <section id="about" className="py-24 bg-swiss-navy px-6 relative overflow-hidden scroll-mt-28">
@@ -9,14 +9,14 @@ const About = () => {
 
       <div className="max-w-6xl mx-auto">
         <div className="grid md:grid-cols-2 gap-16 items-center">
-          <div className="relative aspect-[4/5] rounded-3xl overflow-hidden group shadow-2xl bg-swiss-dark flex items-center justify-center">
+          <div className="relative aspect-[4/5] rounded-3xl overflow-hidden group shadow-2xl bg-swiss-green/10 flex items-center justify-center">
             <img
               src={profileImg}
               alt="Cynthia Wafula"
               onError={(e) => {
-                e.currentTarget.src = "https://6a2b01f09e041c30a1857ea5.imgix.net/images/BackgroundEraser_20260505_212621643.png?__hstc=158051173.539e8a62a34e9b8c52938b2d9900832a.1781203370373.1781210269202.2&__hssc=158051173.1.1781210269202&__hsfp=1e21dac6141d1d1a1f8b3b69cd3f8d2f";
+                e.currentTarget.src = "https://6a2b01f09e041c30a1857ea5.imgix.net/myr/Screenshot%202026-05-27%20152125.png";
               }}
-              className="w-full h-full object-cover grayscale contrast-115 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700 ease-out"
+              className="w-full h-full object-cover group-hover:scale-105 transition-all duration-700 ease-out"
             />
 
             <div className="absolute bottom-6 left-6 z-20 pointer-events-none">
