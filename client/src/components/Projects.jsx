@@ -13,7 +13,7 @@ const projects = [
   {
     id: 2,
     title: 'My portfolio',
-    description: 'A modern cloud operations interface with serverless deployment patterns, automated build sync, and secure token-based user flows for enterprise tools.',
+    description: 'A polished personal portfolio that showcases cloud-native web design, scalable MERN architecture, and fast, modern deployment workflows—built for clarity, performance, and a refined UI-first presentation.`',
     tags: ['AWS', 'Serverless', 'Design'],
     imageUrl: 'https://6a2b01f09e041c30a1857ea5.imgix.net/images/Screenshot%202026-06-13%20235717.png',
     liveLink: 'https://tofina-portfolio.vercel.app',

@@ -1,7 +1,7 @@
 import React from 'react';
 
 const About = () => {
-  const profileImg = "https://6a2b01f09e041c30a1857ea5.imgix.net/myr/Screenshot%202026-05-27%20152125.png";
+  const profileImg = "https://6a2b01f09e041c30a1857ea5.imgix.net/images/profile.jpg";
 
   return (
     <section id="about" className="py-24 bg-swiss-navy px-6 relative overflow-hidden scroll-mt-28">
