@@ -3,12 +3,12 @@ import React from 'react';
 const projects = [
   {
     id: 1,
-    title: 'MERN Gateway Studio',
-    description: 'A fully responsive full-stack studio dashboard built with React, Node.js, Express, and MongoDB. Designed for performance, user-first workflows, and polished project analytics.',
+    title: 'MYR | Art Direction & Curatorial Archive',
+    description: 'A high-end, minimalist digital archive built for Myrna, a Mombasa-based Art Director and Curator. This platform serves as a visual portfolio, a journal for field notes, and a catalog of professional services.',
     tags: ['MERN', 'Dashboard', 'API'],
-    imageUrl: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=1200&auto=format&fit=crop&q=80',
-    liveLink: 'https://tofina-portfolio.vercel.app',
-    githubLink: 'https://github.com/your-username/mern-gateway-studio'
+    imageUrl: 'https://6a2b01f09e041c30a1857ea5.imgix.net/images/Screenshot%202026-05-27%20212207.png',
+    liveLink: 'https://myr-art-direction.vercel.app',
+    githubLink: 'https://github.com/tofina41-chux/MyrnA'
   },
   {
     id: 2,

@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { API_BASE } from '../api';
+
+const contactEmail = 'hello@tofina.dev'; // Replace this with your actual inbox address
 
 const Contact = () => {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
@@ -9,26 +10,11 @@ const Contact = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    setStatus("Sending...");
-    
-    try {
-      const response = await fetch(`${API_BASE}/api/contact`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
-      });
-
-      if (response.ok) {
-        setStatus("Message Sent! I'll get back to you soon.");
-        setFormData({ name: '', email: '', message: '' });
-      } else {
-        setStatus("Something went wrong. Try again.");
-      }
-    } catch (err) {
-      setStatus("Error connecting to server.");
-    }
+    const mailto = `mailto:${contactEmail}?subject=${encodeURIComponent(`Portfolio message from ${formData.name}`)}&body=${encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\n${formData.message}`)}`;
+    setStatus("Opening your email client...");
+    window.location.href = mailto;
   };
 
   return (
