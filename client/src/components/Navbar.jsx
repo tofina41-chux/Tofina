@@ -18,6 +18,7 @@ const Navbar = () => {
     { href: '#about', label: 'About' },
     { href: '#projects', label: 'Work' },
     { href: '#skills', label: 'Skills' },
+    { href: '#gallery', label: 'Gallery' },
     { href: '#contact', label: 'Contact', highlight: true }
   ];
 
@@ -30,7 +31,7 @@ const Navbar = () => {
         </a>
 
         <div className="hidden sm:flex items-center gap-6">
-          {navLinks.slice(0, 3).map((link) => (
+          {navLinks.slice(0, 4).map((link) => (
             <a key={link.href} href={link.href} className="text-white/75 hover:text-swiss-green font-medium text-sm transition-all">
               {link.label}
             </a>

@@ -1,110 +1,202 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
-const posts = [
+const designs = [
   {
     id: 1,
-    title: 'Building Resilient Interfaces for Real Users',
-    excerpt: 'Crafted a modular React architecture that scales across product lines while keeping the UX responsive, accessible, and brand-led.',
-    category: 'Design',
-    date: 'May 2026',
-    imageUrl: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1200&auto=format&fit=crop&q=80'
+    title: "Tofina Sparkle Solutions Flyer",
+    description:
+      "Marketing flyer designed to promote professional residential and commercial cleaning services.",
+    category: "Flyer",
+    year: "2026",
+    imageUrl: "/design1.png",
   },
   {
     id: 2,
-    title: 'MERN Workflows in Production',
-    excerpt: 'Reduced deployment friction with a reusable backend pattern and automated sync between client, API, and cloud storage.',
-    category: 'Engineering',
-    date: 'April 2026',
-    imageUrl: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=1200&auto=format&fit=crop&q=80'
+    title: "Social Media Campaign",
+    description:
+      "Instagram and Facebook promotional artwork created to increase engagement and brand awareness.",
+    category: "Social Media",
+    year: "2026",
+    imageUrl: "/design2.png",
   },
   {
     id: 3,
-    title: 'Optimizing Digital Assets for Speed',
-    excerpt: 'A practical guide to image delivery, asset caching, and content-first load performance for modern marketing sites.',
-    category: 'Optimization',
-    date: 'March 2026',
-    imageUrl: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=1200&auto=format&fit=crop&q=80'
-  }
+    title: "Business Branding",
+    description:
+      "Professional branding assets including logo presentation, colour palette and identity layout.",
+    category: "Brand Identity",
+    year: "2026",
+    imageUrl: "/design3.png",
+  },
+  {
+    id: 4,
+    title: "Business Card Design",
+    description:
+      "Minimal and modern business card designed for client networking and brand consistency.",
+    category: "Print Design",
+    year: "2026",
+    imageUrl: "/design4.png",
+  },
+  {
+  id: 5,
+  title: "Logo Collection",
+  description:
+    "A collection of custom logo concepts designed for businesses and personal brands, focusing on simplicity, versatility, and memorable visual identity.",
+  category: "Logo Design",
+  year: "2026",
+  imageUrl: "/logo-showcase.png",
+},
+  {
+    id: 6,
+    title: "Promotional Poster",
+    description:
+      "Large-format promotional poster designed with strong typography and visual hierarchy.",
+    category: "Poster",
+    year: "2026",
+    imageUrl: "/design6.png",
+  },
 ];
 
 const Blog = () => {
-  const [selectedPost, setSelectedPost] = useState(null);
+  const [selectedDesign, setSelectedDesign] = useState(null);
 
   return (
-    <section id="blog" className="py-24 bg-swiss-dark dark:bg-swiss-dark px-6 border-t border-white/5 relative scroll-mt-28">
+    <section
+      id="gallery"
+      className="py-24 bg-swiss-dark px-6 border-t border-white/5 scroll-mt-28"
+    >
       <div className="max-w-6xl mx-auto">
-        <div className="flex flex-col items-center mb-16 text-center">
-          <span className="text-swiss-green font-mono text-xs tracking-[0.4em] uppercase mb-3">Editorial / Streams</span>
-          <h2 className="text-4xl font-black text-white dark:text-white tracking-tight">Latest Insights<span className="text-swiss-green">.</span></h2>
+
+        <div className="text-center mb-16">
+          <span className="text-swiss-green font-mono text-xs tracking-[0.4em] uppercase block mb-3">
+            Creative / Portfolio
+          </span>
+
+          <h2 className="text-4xl font-black text-white tracking-tight">
+            Creative Gallery
+            <span className="text-swiss-green">.</span>
+          </h2>
+
+          <p className="text-swiss-grey mt-5 max-w-2xl mx-auto leading-relaxed">
+            A curated collection of graphic design work created using Canva,
+            showcasing branding, marketing, print and digital media projects.
+          </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8">
-          {posts.map((post) => (
+        <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-8">
+
+          {designs.map((design) => (
+
             <div
-              key={post.id}
-              className="group bg-swiss-navy/30 border border-white/5 rounded-3xl overflow-hidden backdrop-blur-md hover:border-swiss-green/30 transition-all duration-500 flex flex-col justify-between"
+              key={design.id}
+              className="group bg-swiss-navy/30 border border-white/5 rounded-3xl overflow-hidden hover:border-swiss-green/30 transition-all duration-500 flex flex-col"
             >
-              <div>
-                {post.imageUrl && (
-                  <div className="w-full aspect-video overflow-hidden bg-swiss-dark/50 border-b border-white/5">
-                    <img
-                      src={post.imageUrl}
-                      alt={post.title}
-                      className="w-full h-full object-cover transform group-hover:scale-102 transition-transform duration-700"
-                    />
-                  </div>
-                )}
 
-                <div className="p-8">
-                  <div className="flex justify-between items-center mb-4 font-mono text-[10px] text-swiss-grey">
-                    <span className="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-swiss-green font-bold">{post.category}</span>
-                    <span>{post.date}</span>
-                  </div>
+              <div className="overflow-hidden">
 
-                  <h3 className="text-xl font-black text-white tracking-tight mb-3 group-hover:text-swiss-green transition-colors leading-snug">
-                    {post.title}
-                  </h3>
+                <img
+                  src={design.imageUrl}
+                  alt={design.title}
+                  className="w-full h-72 object-cover transition-transform duration-700 group-hover:scale-105"
+                />
 
-                  <p className="text-swiss-grey/80 text-sm leading-relaxed mb-4 line-clamp-3">
-                    {post.excerpt}
-                  </p>
+              </div>
+
+              <div className="p-7 flex flex-col flex-grow">
+
+                <div className="flex justify-between items-center mb-5">
+
+                  <span className="text-[10px] uppercase tracking-[0.35em] text-swiss-green font-mono">
+                    {design.category}
+                  </span>
+
+                  <span className="text-xs text-swiss-grey">
+                    {design.year}
+                  </span>
+
                 </div>
+
+                <h3 className="text-xl font-black text-white mb-4 group-hover:text-swiss-green transition-colors">
+                  {design.title}
+                </h3>
+
+                <p className="text-sm text-swiss-grey leading-relaxed flex-grow">
+                  {design.description}
+                </p>
+
+                <button
+                  onClick={() => setSelectedDesign(design)}
+                  className="mt-8 py-3 rounded-xl border border-swiss-green text-swiss-green font-semibold hover:bg-swiss-green hover:text-swiss-dark transition-all duration-300"
+                >
+                  View Design
+                </button>
+
               </div>
 
-              <div className="px-8 pb-8 pt-2">
-                <button
-                  onClick={() => setSelectedPost(post)}
-                  className="flex items-center gap-2 text-xs font-mono text-white group-hover:text-swiss-green transition-colors cursor-pointer w-fit font-bold select-none"
-                >
-                  <span>Read System File</span>
-                  <span className="transform group-hover:translate-x-1 transition-transform">→</span>
-                </button>
-              </div>
             </div>
+
           ))}
+
         </div>
+
       </div>
 
-      {selectedPost && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 backdrop-blur-xl bg-swiss-dark/80">
-          <div className="absolute inset-0" onClick={() => setSelectedPost(null)}></div>
-          <div className="relative w-full max-w-2xl bg-swiss-navy border border-white/10 rounded-[2rem] p-8 md:p-10 shadow-2xl animate-in fade-in zoom-in-95 duration-200">
-            <div className="flex justify-between items-center border-b border-white/5 pb-4 mb-6 font-mono text-xs text-swiss-grey">
-              <span className="text-swiss-green uppercase tracking-widest">[ FILE: {selectedPost.category} ]</span>
-              <span>{selectedPost.date}</span>
-            </div>
-            <h3 className="text-2xl md:text-3xl font-black text-white tracking-tight mb-6 leading-tight">{selectedPost.title}</h3>
-            {selectedPost.imageUrl && (
-              <div className="w-full aspect-video rounded-2xl overflow-hidden border border-white/5 mb-6">
-                <img src={selectedPost.imageUrl} alt={selectedPost.title} className="w-full h-full object-cover" />
+      {selectedDesign && (
+
+        <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-6">
+
+          <div
+            className="absolute inset-0"
+            onClick={() => setSelectedDesign(null)}
+          ></div>
+
+          <div className="relative bg-swiss-navy rounded-3xl border border-white/10 max-w-4xl w-full overflow-hidden shadow-2xl">
+
+            <img
+              src={selectedDesign.imageUrl}
+              alt={selectedDesign.title}
+              className="w-full max-h-[70vh] object-contain bg-swiss-dark"
+            />
+
+            <div className="p-8">
+
+              <div className="flex justify-between items-center mb-5">
+
+                <span className="text-swiss-green uppercase tracking-[0.35em] text-xs font-mono">
+                  {selectedDesign.category}
+                </span>
+
+                <span className="text-swiss-grey text-sm">
+                  {selectedDesign.year}
+                </span>
+
               </div>
-            )}
-            <p className="text-white/80 text-base leading-relaxed mb-8 whitespace-pre-line">{selectedPost.excerpt}</p>
-            <div className="flex justify-end border-t border-white/5 pt-6">
-              <button onClick={() => setSelectedPost(null)} className="px-6 py-3 bg-white/5 hover:bg-white/10 text-white font-mono text-xs uppercase rounded-xl border border-white/10 transition-all">Close File Terminal</button>
+
+              <h3 className="text-3xl font-black text-white mb-5">
+                {selectedDesign.title}
+              </h3>
+
+              <p className="text-swiss-grey leading-relaxed">
+                {selectedDesign.description}
+              </p>
+
+              <div className="mt-8 border-t border-white/5 pt-6 flex justify-end">
+
+                <button
+                  onClick={() => setSelectedDesign(null)}
+                  className="px-6 py-3 rounded-xl border border-white/10 text-white hover:bg-white/5 transition-all"
+                >
+                  Close Preview
+                </button>
+
+              </div>
+
             </div>
+
           </div>
+
         </div>
+
       )}
     </section>
   );

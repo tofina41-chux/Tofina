@@ -7,16 +7,27 @@ const Hero = () => {
   const [time, setTime] = useState(new Date());
   const [language, setLanguage] = useState('EN');
 
+  // Gallery Preview Images
   const mockupImages = [
-    'https://images.unsplash.com/photo-1518770660439-4636190af475?w=1200&auto=format&fit=crop&q=80',
-    'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=1200&auto=format&fit=crop&q=80',
-    'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1200&auto=format&fit=crop&q=80'
+    "/logo-showcase.png",
+  "/logo.png",
+  "/logo1.png",
+  "/design1.png",
+  "/design2.png",
+  "/design3.png",
+  "/design4.png",
+  "/design6.png",
   ];
 
   const contentMatrix = {
     EN: {
       subtitle: 'Frontend Developer & Creative Technologist',
-      marquee: ['� Full-Stack Automation', '� UI/UX Design', '� AWS Cloud Infrastructure', '� Custom Digital Tools'],
+      marquee: [
+        'Full-Stack Automation',
+        'UI/UX Design',
+        'AWS Cloud Infrastructure',
+        'Custom Digital Tools'
+      ],
       pitch: 'I build clean websites, automation systems, and digital tools for ',
       strings: ['CREATORS.', 'DEVELOPERS.', 'LOCAL BUSINESSES.', 'BRANDS.'],
       btnExplore: 'Explore Work',
@@ -24,7 +35,12 @@ const Hero = () => {
     },
     SW: {
       subtitle: 'Msanidi Programu wa Frontend na Mtaalamu wa Ubunifu',
-      marquee: ['� Mifumo ya Kiotomatiki', '� Ubunifu wa UI/UX', '� Miundombinu ya AWS Cloud', '� Zana Maalum za Kidijitali'],
+      marquee: [
+        'Mifumo ya Kiotomatiki',
+        'Ubunifu wa UI/UX',
+        'Miundombinu ya AWS Cloud',
+        'Zana Maalum za Kidijitali'
+      ],
       pitch: 'Mimi huunda tovuti safi, mifumo ya kiotomatiki, na zana za kidijitali kwa ',
       strings: ['WABUNIFU.', 'WASANIDI PROGRAMU.', 'BIASHARA ZA MTAANI.', 'MASHIRIKA.'],
       btnExplore: 'Kagua Kazi Zangu',
@@ -40,7 +56,9 @@ const Hero = () => {
   }, []);
 
   useEffect(() => {
-    const handleMouseMove = (e) => setMousePos({ x: e.clientX, y: e.clientY });
+    const handleMouseMove = (e) =>
+      setMousePos({ x: e.clientX, y: e.clientY });
+
     window.addEventListener('mousemove', handleMouseMove);
 
     const stringInterval = setInterval(() => {
@@ -48,15 +66,15 @@ const Hero = () => {
     }, 2500);
 
     const frameTimer = setInterval(() => {
-      setImageIndex((prevIndex) => (prevIndex + 1) % mockupImages.length);
-    }, 3000);
+      setImageIndex((prev) => (prev + 1) % mockupImages.length);
+    }, 3500);
 
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
       clearInterval(stringInterval);
       clearInterval(frameTimer);
     };
-  }, [currentStrings.length, mockupImages.length]);
+  }, [currentStrings.length]);
 
   const formatTime = (date) =>
     date.toLocaleTimeString('en-US', {
@@ -67,10 +85,15 @@ const Hero = () => {
     });
 
   return (
-    <section id="home" className="min-h-screen bg-white text-swiss-dark dark:bg-swiss-dark dark:text-white flex flex-col justify-center px-6 pt-32 relative overflow-hidden transition-colors duration-300 scroll-mt-28">
+    <section
+      id="home"
+      className="min-h-screen bg-white text-swiss-dark dark:bg-swiss-dark dark:text-white flex flex-col justify-center px-6 pt-32 relative overflow-hidden transition-colors duration-300 scroll-mt-28"
+    >
       <div className="absolute top-24 right-6 z-50">
         <button
-          onClick={() => setLanguage((prev) => (prev === 'EN' ? 'SW' : 'EN'))}
+          onClick={() =>
+            setLanguage((prev) => (prev === 'EN' ? 'SW' : 'EN'))
+          }
           className="flex items-center gap-2 bg-swiss-green text-swiss-dark font-mono text-xs font-black px-4 py-2 rounded-xl shadow-lg border border-swiss-green/20 hover:scale-105 active:scale-95 transition-all uppercase tracking-widest"
         >
           <span>🌐</span>
@@ -86,82 +109,147 @@ const Hero = () => {
       <div
         className="pointer-events-none absolute inset-0 z-0 transition-opacity duration-700 opacity-60"
         style={{
-          background: `radial-gradient(800px circle at ${mousePos.x}px ${mousePos.y}px, rgba(1, 195, 141, 0.05), transparent 60%)`
+          background: `radial-gradient(800px circle at ${mousePos.x}px ${mousePos.y}px, rgba(1,195,141,.05), transparent 60%)`,
         }}
       />
 
-      <div className="absolute inset-0 z-0 opacity-[0.07]" style={{ backgroundImage: `linear-gradient(to right, #696E79 1px, transparent 1px), linear-gradient(to bottom, #696E79 1px, transparent 1px)`, backgroundSize: '60px 60px' }} />
+      <div
+        className="absolute inset-0 z-0 opacity-[0.07]"
+        style={{
+          backgroundImage:
+            'linear-gradient(to right,#696E79 1px,transparent 1px),linear-gradient(to bottom,#696E79 1px,transparent 1px)',
+          backgroundSize: '60px 60px',
+        }}
+      />
 
       <div className="max-w-6xl mx-auto w-full grid lg:grid-cols-12 gap-12 items-center z-10 relative">
+
         <div className="lg:col-span-6 flex flex-col items-start text-left space-y-6">
-          <div className="inline-flex items-center gap-3 bg-swiss-dark/5 dark:bg-white/5 border border-swiss-green text-swiss-dark dark:text-white px-4 py-2 rounded-xl font-mono text-[10px] tracking-wider shadow-md select-none">
+
+          <div className="inline-flex items-center gap-3 bg-swiss-dark/5 dark:bg-white/5 border border-swiss-green text-swiss-dark dark:text-white px-4 py-2 rounded-xl font-mono text-[10px] tracking-wider shadow-md">
+
             <div className="flex items-center gap-2">
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-swiss-green opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-swiss-green"></span>
               </span>
-              <span className="font-black text-swiss-green">SYS_NOMINAL</span>
+
+              <span className="font-black text-swiss-green">
+                SYS_NOMINAL
+              </span>
             </div>
-            <div className="h-3 w-[1px] bg-swiss-dark/20 dark:bg-white/20" />
+
+            <div className="h-3 w-px bg-white/20"></div>
+
             <div>
-              <span className="opacity-60 font-bold">LOC:</span> <span className="font-bold">MOMBASA, KE</span>
+              <span className="opacity-60">LOC:</span> MOMBASA, KE
             </div>
-            <div className="h-3 w-[1px] bg-swiss-dark/20 dark:bg-white/20" />
+
+            <div className="h-3 w-px bg-white/20"></div>
+
             <div>
-              <span className="opacity-60 font-bold">TIME:</span> <span className="text-swiss-green font-black tabular-nums">{formatTime(time)}</span>
+              <span className="opacity-60">TIME:</span>{' '}
+              <span className="text-swiss-green font-bold">
+                {formatTime(time)}
+              </span>
             </div>
           </div>
 
-          <h2 className="text-swiss-green font-mono text-sm tracking-[0.4em] uppercase">{contentMatrix[language].subtitle}</h2>
+          <h2 className="text-swiss-green font-mono text-sm tracking-[0.45em] uppercase">
+            {contentMatrix[language].subtitle}
+          </h2>
 
-          <h1 className="text-7xl md:text-[8.5rem] font-black text-swiss-green tracking-tighter leading-[0.85] select-none drop-shadow-[0_0_30px_rgba(1,195,141,0.15)]">
-            Tofina<span className="text-swiss-dark dark:text-white inline-block animate-bounce">.</span>
-          </h1>
+          <h1 className="text-7xl md:text-[7rem] lg:text-[7.5rem] font-black leading-[0.9] select-none">
+  <span className="text-swiss-green tracking-[0.06em]">
+    TOFINA
+  </span>
+  <span className="text-swiss-dark dark:text-white inline-block animate-bounce">
+    .
+  </span>
+</h1>
 
-          <div className="w-full max-w-xl overflow-hidden relative py-2 mask-linear">
-            <div className="flex gap-8 whitespace-nowrap animate-marquee font-mono text-[11px] tracking-[0.25em] text-swiss-dark/50 dark:text-white/40 uppercase">
+          <div className="w-full overflow-hidden py-2">
+            <div className="flex gap-8 whitespace-nowrap animate-marquee font-mono text-[11px] tracking-[0.25em] uppercase text-swiss-dark/50 dark:text-white/40">
+
               {contentMatrix[language].marquee.map((item, i) => (
-                <span key={i}>{item}</span>
+                <span key={i}>◆ {item}</span>
               ))}
+
               {contentMatrix[language].marquee.map((item, i) => (
-                <span key={`dup-${i}`}>{item}</span>
+                <span key={`dup-${i}`}>◆ {item}</span>
               ))}
+
             </div>
           </div>
 
-          <p className="text-swiss-dark/80 dark:text-swiss-grey text-xl md:text-2xl max-w-xl leading-relaxed font-light min-h-[4rem] lg:min-h-[auto]">
+          <p className="text-swiss-dark/80 dark:text-swiss-grey text-xl md:text-2xl max-w-xl leading-relaxed">
             {contentMatrix[language].pitch}
-            <span className="text-swiss-green font-bold transition-all duration-500 underline decoration-swiss-green/20 underline-offset-8">
+            <span className="text-swiss-green font-bold underline underline-offset-8 decoration-swiss-green/30">
               {currentStrings[index]}
             </span>
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 pt-4 w-full sm:w-auto">
-            <a href="#projects" className="group relative px-10 py-4 bg-swiss-green text-swiss-dark rounded-full font-black overflow-hidden transition-all text-center hover:scale-105 shadow-[0_0_30px_rgba(1,195,141,0.2)]">
-              <span className="relative z-10 uppercase tracking-widest text-xs">{contentMatrix[language].btnExplore}</span>
-              <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
+          <div className="flex gap-4 pt-4">
+            <a
+              href="#projects"
+              className="px-10 py-4 bg-swiss-green text-swiss-dark rounded-full font-black uppercase tracking-widest text-xs hover:scale-105 transition"
+            >
+              {contentMatrix[language].btnExplore}
             </a>
-            <a href="/uploads/Cynthia_Wafula_CV.pdf" download="Cynthia_Wafula_CV.pdf" target="_blank" rel="noreferrer" className="px-8 py-4 bg-transparent border border-swiss-dark/20 dark:border-white/10 hover:bg-swiss-dark/5 dark:hover:bg-white/5 text-swiss-dark dark:text-white font-mono text-xs font-bold uppercase rounded-xl tracking-widest text-center transition-all">
+
+            <a
+              href="/uploads/Cynthia_Wafula_CV.pdf"
+              download
+              className="px-8 py-4 border border-white/10 rounded-xl font-mono uppercase text-xs hover:bg-white/5 transition"
+            >
               {contentMatrix[language].btnCV}
             </a>
           </div>
+
         </div>
 
-        <div className="lg:col-span-6 flex justify-center lg:justify-end items-center w-full">
-          <div className="relative w-full aspect-[4/3] bg-swiss-navy/40 dark:bg-swiss-navy/80 border border-swiss-dark/10 dark:border-white/10 rounded-[2rem] overflow-hidden shadow-2xl p-2 max-w-2xl transition-all duration-300">
-            <div className="flex items-center gap-1.5 px-4 py-2 border-b border-swiss-dark/5 dark:border-white/5 font-mono text-[9px] text-swiss-grey uppercase tracking-wider">
-              <span className="h-2 w-2 rounded-full bg-red-500/40" />
-              <span className="h-2 w-2 rounded-full bg-yellow-500/40" />
-              <span className="h-2 w-2 rounded-full bg-swiss-green/40" />
-              <span className="ml-2 font-bold text-swiss-green">live_preview_node.exe</span>
+        <div className="lg:col-span-6">
+
+          <div className="bg-swiss-navy/70 border border-white/10 rounded-[2rem] overflow-hidden shadow-2xl p-2">
+
+            <div className="flex items-center gap-2 px-4 py-2 border-b border-white/10 font-mono text-[10px] uppercase">
+
+              <span className="w-2 h-2 rounded-full bg-red-400"></span>
+              <span className="w-2 h-2 rounded-full bg-yellow-400"></span>
+              <span className="w-2 h-2 rounded-full bg-swiss-green"></span>
+
+              <span className="ml-2 text-swiss-green font-bold">
+                creative_gallery.exe
+              </span>
+
             </div>
 
-            <div className="w-full h-[calc(100%-28px)] rounded-2xl overflow-hidden bg-swiss-dark relative">
-              <img src={mockupImages[imageIndex]} alt="System Metric Screen" className="w-full h-full object-cover transition-opacity duration-150" />
-              <div className="absolute inset-0 bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(255,0,0,0.06),rgba(0,255,0,0.02),rgba(0,0,255,0.06))] bg-[size:100%_4px,6px_100%] pointer-events-none" />
+            <div className="aspect-[4/3] overflow-hidden rounded-2xl relative">
+
+              <img
+                src={mockupImages[imageIndex]}
+                alt="Creative Work"
+                className="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000"
+              />
+
+              <div className="absolute bottom-4 left-4 bg-black/70 backdrop-blur-md px-4 py-2 rounded-xl">
+
+                <p className="text-[10px] font-mono uppercase tracking-[0.25em] text-swiss-green">
+                  LIVE PREVIEW
+                </p>
+
+                <h4 className="text-white font-bold">
+                  Creative Gallery
+                </h4>
+
+              </div>
+
             </div>
+
           </div>
+
         </div>
+
       </div>
     </section>
   );
