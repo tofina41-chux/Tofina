@@ -2,8 +2,23 @@ import nodemailer from 'nodemailer';
 
 export async function POST(request) {
   try {
+    if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
+      console.error('Contact form misconfigured: EMAIL_USER or EMAIL_PASS is not set on this deployment.');
+      return new Response(
+        JSON.stringify({ success: false, error: 'Email is not configured on the server yet.' }),
+        { status: 500 }
+      );
+    }
+
     const body = await request.json();
-    const { name, email, message } = body;
+    const { name, email, message } = body || {};
+
+    if (!name || !email || !message) {
+      return new Response(
+        JSON.stringify({ success: false, error: 'Name, email, and message are all required.' }),
+        { status: 400 }
+      );
+    }
 
     const transporter = nodemailer.createTransport({
       host: process.env.EMAIL_HOST || 'smtp.gmail.com',
@@ -26,6 +41,7 @@ export async function POST(request) {
     await transporter.sendMail(mailOptions);
     return new Response(JSON.stringify({ success: true }), { status: 200 });
   } catch (err) {
-    return new Response(JSON.stringify({ success: false, error: String(err) }), { status: 500 });
+    console.error('Contact form send failed:', err?.message || err);
+    return new Response(JSON.stringify({ success: false, error: String(err?.message || err) }), { status: 500 });
   }
 }
