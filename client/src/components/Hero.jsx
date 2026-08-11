@@ -189,10 +189,10 @@ const Hero = () => {
             </span>
           </p>
 
-          <div className="flex gap-4 pt-4">
+          <div className="flex flex-col gap-4 pt-4 sm:flex-row sm:items-center sm:justify-start">
             <a
               href="#projects"
-              className="px-10 py-4 bg-swiss-green text-swiss-dark rounded-full font-black uppercase tracking-widest text-xs hover:scale-105 transition"
+              className="w-full sm:w-auto inline-flex justify-center px-8 sm:px-10 py-4 bg-swiss-green text-swiss-dark rounded-full font-black uppercase tracking-widest text-xs hover:scale-105 transition"
             >
               {contentMatrix[language].btnExplore}
             </a>
@@ -200,7 +200,7 @@ const Hero = () => {
             <a
               href="/uploads/Cynthia_Wafula_CV.pdf"
               download
-              className="px-8 py-4 border border-white/10 rounded-xl font-mono uppercase text-xs hover:bg-white/5 transition"
+              className="w-full sm:w-auto inline-flex justify-center px-8 py-4 border border-white/10 rounded-xl font-mono uppercase text-xs hover:bg-white/5 transition"
             >
               {contentMatrix[language].btnCV}
             </a>
@@ -208,11 +208,11 @@ const Hero = () => {
 
         </div>
 
-        <div className="lg:col-span-6">
+        <div className="lg:col-span-6 flex justify-center lg:justify-end">
 
-          <div className="bg-swiss-navy/70 border border-white/10 rounded-[2rem] overflow-hidden shadow-2xl p-2">
+          <div className="bg-swiss-navy/70 border border-white/10 rounded-[2rem] overflow-hidden shadow-2xl p-2 w-full max-w-full sm:max-w-[520px] lg:max-w-[560px] mx-auto lg:mx-0">
 
-            <div className="flex items-center gap-2 px-4 py-2 border-b border-white/10 font-mono text-[10px] uppercase">
+            <div className="flex items-center gap-2 px-3 py-2 sm:px-4 sm:py-2 border-b border-white/10 font-mono text-[10px] uppercase">
 
               <span className="w-2 h-2 rounded-full bg-red-400"></span>
               <span className="w-2 h-2 rounded-full bg-yellow-400"></span>
