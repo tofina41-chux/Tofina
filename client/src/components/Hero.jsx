@@ -124,9 +124,9 @@ const Hero = () => {
 
       <div className="max-w-6xl mx-auto w-full grid lg:grid-cols-12 gap-12 items-center z-10 relative">
 
-        <div className="lg:col-span-6 flex flex-col items-start text-left space-y-6">
+        <div className="min-w-0 lg:col-span-6 flex flex-col items-start text-left space-y-6">
 
-          <div className="inline-flex items-center gap-3 bg-swiss-dark/5 dark:bg-white/5 border border-swiss-green text-swiss-dark dark:text-white px-4 py-2 rounded-xl font-mono text-[10px] tracking-wider shadow-md">
+          <div className="max-w-full flex-wrap inline-flex items-center gap-2 gap-y-2 bg-swiss-dark/5 dark:bg-white/5 border border-swiss-green text-swiss-dark dark:text-white px-4 py-2 rounded-xl font-mono text-[10px] tracking-wider shadow-md">
 
             <div className="flex items-center gap-2">
               <span className="relative flex h-2 w-2">
@@ -139,13 +139,13 @@ const Hero = () => {
               </span>
             </div>
 
-            <div className="h-3 w-px bg-white/20"></div>
+            <div className="hidden sm:block h-3 w-px bg-white/20"></div>
 
             <div>
               <span className="opacity-60">LOC:</span> MOMBASA, KE
             </div>
 
-            <div className="h-3 w-px bg-white/20"></div>
+            <div className="hidden sm:block h-3 w-px bg-white/20"></div>
 
             <div>
               <span className="opacity-60">TIME:</span>{' '}
@@ -159,7 +159,7 @@ const Hero = () => {
             {contentMatrix[language].subtitle}
           </h2>
 
-          <h1 className="text-7xl md:text-[7rem] lg:text-[7.5rem] font-black leading-[0.9] select-none">
+          <h1 className="text-5xl sm:text-6xl md:text-[7rem] lg:text-[7.5rem] font-black leading-[0.9] select-none break-words">
   <span className="text-swiss-green tracking-[0.06em]">
     TOFINA
   </span>
@@ -208,9 +208,9 @@ const Hero = () => {
 
         </div>
 
-        <div className="lg:col-span-6 flex justify-center lg:justify-end">
+        <div className="min-w-0 w-full lg:col-span-6 flex justify-center lg:justify-end">
 
-          <div className="bg-swiss-navy/70 border border-white/10 rounded-[2rem] overflow-hidden shadow-2xl p-2 w-full max-w-full sm:max-w-[520px] lg:max-w-[560px] mx-auto lg:mx-0">
+          <div className="bg-swiss-navy/70 border border-white/10 rounded-[1.25rem] sm:rounded-[2rem] overflow-hidden shadow-2xl p-2 w-full max-w-full sm:max-w-[520px] lg:max-w-[560px] mx-auto lg:mx-0">
 
             <div className="flex items-center gap-2 px-3 py-2 sm:px-4 sm:py-2 border-b border-white/10 font-mono text-[10px] uppercase">
 
