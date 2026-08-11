@@ -1,0 +1,27 @@
+# Dependencies
+node_modules/
+client/node_modules/
+
+# Environment variables — never commit real secrets
+.env
+.env.local
+.env.*.local
+server/.env
+
+# Build output
+dist/
+dist-ssr/
+client/dist/
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS / editor
+.DS_Store
+.vscode/*
+!.vscode/extensions.json
+.idea
+
+# Database
+db.sqlite3
