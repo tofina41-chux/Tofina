@@ -1,20 +1,46 @@
 import { useState } from 'react';
 
-const contactEmail = 'hello@tofina.dev'; // Replace this with your actual inbox address
+const contactEmail = 'tofina41@gmail.com';
 
 const Contact = () => {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [status, setStatus] = useState("");
+  const [statusType, setStatusType] = useState(""); // 'success' | 'error' | ''
+  const [sending, setSending] = useState(false);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const mailto = `mailto:${contactEmail}?subject=${encodeURIComponent(`Portfolio message from ${formData.name}`)}&body=${encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\n${formData.message}`)}`;
-    setStatus("Opening your email client...");
-    window.location.href = mailto;
+    setSending(true);
+    setStatus("Sending your message...");
+    setStatusType("");
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+      const data = await res.json();
+
+      if (res.ok && data.success) {
+        setStatus("Message sent — I'll get back to you soon.");
+        setStatusType("success");
+        setFormData({ name: '', email: '', message: '' });
+      } else {
+        throw new Error(data.error || 'Something went wrong');
+      }
+    } catch {
+      setStatus(
+        `Couldn't send that automatically. Please email me directly at ${contactEmail}.`
+      );
+      setStatusType("error");
+    } finally {
+      setSending(false);
+    }
   };
 
   return (
@@ -61,11 +87,23 @@ const Contact = () => {
             className="w-full p-4 bg-swiss-dark border border-white/10 rounded-2xl text-white focus:border-swiss-green outline-none transition-all placeholder:text-swiss-grey/50"
           ></textarea>
           
-          <button type="submit" className="w-full py-4 bg-swiss-green text-swiss-dark font-black rounded-2xl hover:brightness-110 hover:shadow-[0_10px_40px_rgba(1,195,141,0.2)] transition-all uppercase tracking-widest text-sm">
-            Send Message
+          <button
+            type="submit"
+            disabled={sending}
+            className="w-full py-4 bg-swiss-green text-swiss-dark font-black rounded-2xl hover:brightness-110 hover:shadow-[0_10px_40px_rgba(1,195,141,0.2)] transition-all uppercase tracking-widest text-sm disabled:opacity-60 disabled:cursor-not-allowed"
+          >
+            {sending ? "Sending..." : "Send Message"}
           </button>
         </form>
-        {status && <p className="mt-6 text-swiss-green text-center font-mono text-sm">{status}</p>}
+        {status && (
+          <p
+            className={`mt-6 text-center font-mono text-sm ${
+              statusType === "error" ? "text-red-400" : "text-swiss-green"
+            }`}
+          >
+            {status}
+          </p>
+        )}
       </div>
     </section>
   );
