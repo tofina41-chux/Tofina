@@ -1,11 +1,11 @@
 import React from 'react';
 
 const About = () => {
-  const profileImg = "/profile.png";
+  const profileImg = "/profile.webp";
 
   return (
     <section id="about" className="py-24 bg-swiss-navy px-6 relative overflow-hidden scroll-mt-28">
-      <div className="absolute left-0 top-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/5 to-transparent"></div>
+      <div className="absolute left-0 top-0 w-full h-[1px] bg-gradient-to-r from-transparent via-fg/5 to-transparent"></div>
 
       <div className="max-w-6xl mx-auto">
         <div className="grid md:grid-cols-2 gap-16 items-center">
@@ -13,6 +13,8 @@ const About = () => {
             <img
               src={profileImg}
               alt="Cynthia Wafula"
+              loading="lazy"
+              decoding="async"
               onError={(e) => {
                 e.currentTarget.src = "/logo.png";
               }}
@@ -21,7 +23,7 @@ const About = () => {
 
             <div className="absolute bottom-6 left-6 z-20 pointer-events-none">
               <p className="text-xs font-mono tracking-widest text-swiss-green uppercase mb-1">Identity</p>
-              <h3 className="text-xl font-bold text-white tracking-tight">Wafula</h3>
+              <h3 className="text-xl font-bold text-fg tracking-tight">Cynthia Wafula</h3>
             </div>
           </div>
 
@@ -31,30 +33,40 @@ const About = () => {
               <span className="text-swiss-green font-mono text-xs tracking-widest uppercase">01 / Background</span>
             </div>
 
-            <h2 className="text-4xl md:text-5xl font-black text-white mb-8 tracking-tight leading-none">
-              Engineering <span className="text-swiss-green">Systems</span> With Aesthetic Precision.
+            <h2 className="text-4xl md:text-5xl font-black text-fg mb-8 tracking-tight leading-none">
+              Web, Design &amp; <span className="text-swiss-green">Digital Support</span>, Done Properly.
             </h2>
 
-            <p className="text-white/80 text-lg mb-6 leading-relaxed">
-              I am an IT professional and Creative Designer based in Kenya. I bridge the gap between heavy infrastructure architecture and clean frontend user interaction, turning complex code pipelines into lightweight digital assets.
+            <p className="text-fg/80 text-lg mb-6 leading-relaxed">
+              I'm Cynthia Wafula, an IT and digital support professional and web &amp; creative designer
+              based in Mombasa, Kenya. I build websites and web apps, create branding and social content,
+              and help people and teams get their digital work done.
+            </p>
+
+            <p className="text-swiss-grey text-base mb-4 leading-relaxed">
+              I started in IT support in 2016, helping learners and customers at a cyber caf&eacute; with
+              computer packages and digital literacy. Since then I've worked across operations, photography
+              project coordination and, in 2026, as an IT Att&aring;ch&eacute; at Swahilipot Hub, where I built
+              Sanaa-Sync for the Creative Department.
             </p>
 
             <p className="text-swiss-grey text-base mb-8 leading-relaxed">
-              Specializing in the <span className="text-white font-medium">MERN Stack, Django, and AWS Cloud deployments</span>, I scale solutions tailored for efficiency. With deep domain knowledge in digital asset optimization and technical communication, I shape automation workflows that help digital products gain visibility and run smoothly.
+              Today I take on freelance web and creative projects while completing my Diploma in
+              Information Technology at Mount Kenya University.
             </p>
 
-            <div className="grid grid-cols-3 gap-4 border-t border-white/5 pt-8">
+            <div className="grid grid-cols-3 gap-4 border-t border-fg/5 pt-8">
               <div>
-                <p className="text-3xl font-black text-white tracking-tight mb-1">MERN</p>
-                <p className="text-xs font-mono text-swiss-grey tracking-wider uppercase">Architecture</p>
+                <p className="text-3xl font-black text-fg tracking-tight mb-1">Web</p>
+                <p className="text-xs font-mono text-swiss-grey tracking-wider uppercase">Sites &amp; Apps</p>
               </div>
               <div>
-                <p className="text-3xl font-black text-swiss-green tracking-tight mb-1">AWS</p>
-                <p className="text-xs font-mono text-swiss-grey tracking-wider uppercase">Cloud Sync</p>
+                <p className="text-3xl font-black text-swiss-green tracking-tight mb-1">Design</p>
+                <p className="text-xs font-mono text-swiss-grey tracking-wider uppercase">Brand &amp; Content</p>
               </div>
               <div>
-                <p className="text-3xl font-black text-white tracking-tight mb-1">UI/UX</p>
-                <p className="text-xs font-mono text-swiss-grey tracking-wider uppercase">Optimization</p>
+                <p className="text-3xl font-black text-fg tracking-tight mb-1">IT</p>
+                <p className="text-xs font-mono text-swiss-grey tracking-wider uppercase">Support &amp; Training</p>
               </div>
             </div>
           </div>

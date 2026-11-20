@@ -1,10 +1,24 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { SITE } from '../data/site';
+
+// Isolated so the per-second tick doesn't re-render the whole hero.
+const LiveClock = () => {
+  const [t, setT] = useState(new Date());
+  useEffect(() => {
+    const id = setInterval(() => setT(new Date()), 1000);
+    return () => clearInterval(id);
+  }, []);
+  return (
+    <span className="text-swiss-green font-bold">
+      {t.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false, timeZone: 'Africa/Nairobi' })}
+    </span>
+  );
+};
 
 const Hero = () => {
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const glowRef = useRef(null);
   const [index, setIndex] = useState(0);
   const [imageIndex, setImageIndex] = useState(0);
-  const [time, setTime] = useState(new Date());
   const [language, setLanguage] = useState('EN');
 
   // Gallery Preview Images
@@ -12,36 +26,38 @@ const Hero = () => {
     "/logo-showcase.png",
   "/logo.png",
   "/logo1.png",
-  "/design1.png",
-  "/design2.png",
-  "/design3.png",
-  "/design4.png",
-  "/design6.png",
+  "/design1.webp",
+  "/design2.webp",
+  "/design3.webp",
+  "/design4.webp",
+  "/design6.webp",
   ];
 
   const contentMatrix = {
     EN: {
-      subtitle: 'Frontend Developer & Creative Technologist',
+      subtitle: 'Web & Creative Services · IT Support',
+      support: 'Websites, design and everyday digital support for small businesses and creators in Mombasa and beyond.',
       marquee: [
-        'Full-Stack Automation',
-        'UI/UX Design',
-        'AWS Cloud Infrastructure',
+        'Web Development',
+        'UI/UX & Branding',
+        'IT & Digital Support',
         'Custom Digital Tools'
       ],
-      pitch: 'I build clean websites, automation systems, and digital tools for ',
+      pitch: 'I build clean websites and digital tools for ',
       strings: ['CREATORS.', 'DEVELOPERS.', 'LOCAL BUSINESSES.', 'BRANDS.'],
       btnExplore: 'Explore Work',
       btnCV: 'Download CV'
     },
     SW: {
-      subtitle: 'Msanidi Programu wa Frontend na Mtaalamu wa Ubunifu',
+      subtitle: 'Huduma za Wavuti na Ubunifu · Msaada wa IT',
+      support: 'Tovuti, ubunifu na msaada wa kila siku wa kidijitali kwa biashara ndogo na wabunifu Mombasa na kwingineko.',
       marquee: [
-        'Mifumo ya Kiotomatiki',
-        'Ubunifu wa UI/UX',
-        'Miundombinu ya AWS Cloud',
+        'Uundaji wa Tovuti',
+        'Ubunifu wa UI/UX na Chapa',
+        'Msaada wa IT na Kidijitali',
         'Zana Maalum za Kidijitali'
       ],
-      pitch: 'Mimi huunda tovuti safi, mifumo ya kiotomatiki, na zana za kidijitali kwa ',
+      pitch: 'Mimi huunda tovuti safi na zana za kidijitali kwa ',
       strings: ['WABUNIFU.', 'WASANIDI PROGRAMU.', 'BIASHARA ZA MTAANI.', 'MASHIRIKA.'],
       btnExplore: 'Kagua Kazi Zangu',
       btnCV: 'Pakua CV Yangu'
@@ -51,13 +67,11 @@ const Hero = () => {
   const currentStrings = contentMatrix[language].strings;
 
   useEffect(() => {
-    const timer = setInterval(() => setTime(new Date()), 1000);
-    return () => clearInterval(timer);
-  }, []);
-
-  useEffect(() => {
-    const handleMouseMove = (e) =>
-      setMousePos({ x: e.clientX, y: e.clientY });
+    const handleMouseMove = (e) => {
+      if (glowRef.current) {
+        glowRef.current.style.background = `radial-gradient(800px circle at ${e.clientX}px ${e.clientY}px, rgba(232,103,44,.05), transparent 60%)`;
+      }
+    };
 
     window.addEventListener('mousemove', handleMouseMove);
 
@@ -76,18 +90,10 @@ const Hero = () => {
     };
   }, [currentStrings.length]);
 
-  const formatTime = (date) =>
-    date.toLocaleTimeString('en-US', {
-      hour: '2-digit',
-      minute: '2-digit',
-      second: '2-digit',
-      hour12: false,
-    });
-
   return (
     <section
       id="home"
-      className="min-h-screen bg-white text-swiss-dark dark:bg-swiss-dark dark:text-white flex flex-col justify-center px-6 pt-32 relative overflow-hidden transition-colors duration-300 scroll-mt-28"
+      className="min-h-screen bg-swiss-dark text-fg flex flex-col justify-center px-6 pt-32 relative overflow-hidden transition-colors duration-300 scroll-mt-28"
     >
       <div className="absolute top-24 right-6 z-50">
         <button
@@ -103,14 +109,12 @@ const Hero = () => {
 
       <div className="absolute inset-0 z-0 pointer-events-none">
         <div className="absolute top-[-10%] right-[-10%] w-[600px] h-[600px] bg-swiss-green/10 blur-[140px] rounded-full animate-float-slow"></div>
-        <div className="absolute bottom-[-10%] left-[-10%] w-[600px] h-[600px] bg-swiss-navy/40 blur-[140px] rounded-full animate-float-delayed"></div>
+        <div className="absolute bottom-[-10%] left-[-10%] w-[600px] h-[600px] bg-swiss-navy blur-[140px] rounded-full animate-float-delayed"></div>
       </div>
 
       <div
+        ref={glowRef}
         className="pointer-events-none absolute inset-0 z-0 transition-opacity duration-700 opacity-60"
-        style={{
-          background: `radial-gradient(800px circle at ${mousePos.x}px ${mousePos.y}px, rgba(1,195,141,.05), transparent 60%)`,
-        }}
       />
 
       <div
@@ -126,7 +130,7 @@ const Hero = () => {
 
         <div className="min-w-0 lg:col-span-6 flex flex-col items-start text-left space-y-6">
 
-          <div className="max-w-full flex-wrap inline-flex items-center gap-2 gap-y-2 bg-swiss-dark/5 dark:bg-white/5 border border-swiss-green text-swiss-dark dark:text-white px-4 py-2 rounded-xl font-mono text-[10px] tracking-wider shadow-md">
+          <div className="max-w-full flex-wrap inline-flex items-center gap-2 gap-y-2 bg-fg/5 border border-swiss-green text-fg px-4 py-2 rounded-xl font-mono text-[10px] tracking-wider shadow-md">
 
             <div className="flex items-center gap-2">
               <span className="relative flex h-2 w-2">
@@ -139,19 +143,17 @@ const Hero = () => {
               </span>
             </div>
 
-            <div className="hidden sm:block h-3 w-px bg-white/20"></div>
+            <div className="hidden sm:block h-3 w-px bg-fg/20"></div>
 
             <div>
               <span className="opacity-60">LOC:</span> MOMBASA, KE
             </div>
 
-            <div className="hidden sm:block h-3 w-px bg-white/20"></div>
+            <div className="hidden sm:block h-3 w-px bg-fg/20"></div>
 
             <div>
               <span className="opacity-60">TIME:</span>{' '}
-              <span className="text-swiss-green font-bold">
-                {formatTime(time)}
-              </span>
+              <LiveClock />
             </div>
           </div>
 
@@ -163,13 +165,13 @@ const Hero = () => {
   <span className="text-swiss-green tracking-[0.06em]">
     TOFINA
   </span>
-  <span className="text-swiss-dark dark:text-white inline-block animate-bounce">
+  <span className="text-fg inline-block animate-bounce">
     .
   </span>
 </h1>
 
           <div className="w-full overflow-hidden py-2">
-            <div className="flex gap-8 whitespace-nowrap animate-marquee font-mono text-[11px] tracking-[0.25em] uppercase text-swiss-dark/50 dark:text-white/40">
+            <div className="flex gap-8 whitespace-nowrap animate-marquee font-mono text-[11px] tracking-[0.25em] uppercase text-fg/50">
 
               {contentMatrix[language].marquee.map((item, i) => (
                 <span key={i}>◆ {item}</span>
@@ -182,11 +184,15 @@ const Hero = () => {
             </div>
           </div>
 
-          <p className="text-swiss-dark/80 dark:text-swiss-grey text-xl md:text-2xl max-w-xl leading-relaxed">
+          <p className="text-swiss-grey text-xl md:text-2xl max-w-xl leading-relaxed">
             {contentMatrix[language].pitch}
             <span className="text-swiss-green font-bold underline underline-offset-8 decoration-swiss-green/30">
               {currentStrings[index]}
             </span>
+          </p>
+
+          <p className="text-fg/70 text-base max-w-xl leading-relaxed">
+            {contentMatrix[language].support}
           </p>
 
           <div className="flex flex-col gap-4 pt-4 sm:flex-row sm:items-center sm:justify-start">
@@ -198,9 +204,9 @@ const Hero = () => {
             </a>
 
             <a
-              href="/uploads/Cynthia_Wafula_CV.pdf"
+              href={SITE.cv}
               download
-              className="w-full sm:w-auto inline-flex justify-center px-8 py-4 border border-white/10 rounded-xl font-mono uppercase text-xs hover:bg-white/5 transition"
+              className="w-full sm:w-auto inline-flex justify-center px-8 py-4 border border-fg/10 rounded-xl font-mono uppercase text-xs hover:bg-fg/5 transition"
             >
               {contentMatrix[language].btnCV}
             </a>
@@ -210,9 +216,9 @@ const Hero = () => {
 
         <div className="min-w-0 w-full lg:col-span-6 flex justify-center lg:justify-end">
 
-          <div className="bg-swiss-navy/70 border border-white/10 rounded-[1.25rem] sm:rounded-[2rem] overflow-hidden shadow-2xl p-2 w-full max-w-full sm:max-w-[520px] lg:max-w-[560px] mx-auto lg:mx-0">
+          <div className="bg-swiss-navy/70 border border-fg/10 rounded-[1.25rem] sm:rounded-[2rem] overflow-hidden shadow-2xl p-2 w-full max-w-full sm:max-w-[520px] lg:max-w-[560px] mx-auto lg:mx-0">
 
-            <div className="flex items-center gap-2 px-3 py-2 sm:px-4 sm:py-2 border-b border-white/10 font-mono text-[10px] uppercase">
+            <div className="flex items-center gap-2 px-3 py-2 sm:px-4 sm:py-2 border-b border-fg/10 font-mono text-[10px] uppercase">
 
               <span className="w-2 h-2 rounded-full bg-red-400"></span>
               <span className="w-2 h-2 rounded-full bg-yellow-400"></span>
@@ -234,7 +240,7 @@ const Hero = () => {
 
               <div className="absolute bottom-4 left-4 bg-black/70 backdrop-blur-md px-4 py-2 rounded-xl">
 
-                <p className="text-[10px] font-mono uppercase tracking-[0.25em] text-swiss-green">
+                <p className="text-[10px] font-mono uppercase tracking-[0.25em] text-[#E8672C]">
                   LIVE PREVIEW
                 </p>
 

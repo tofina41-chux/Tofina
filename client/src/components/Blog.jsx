@@ -8,7 +8,7 @@ const designs = [
       "Marketing flyer designed to promote professional residential and commercial cleaning services.",
     category: "Flyer",
     year: "2026",
-    imageUrl: "/design1.png",
+    imageUrl: "/design1.webp",
   },
   {
     id: 2,
@@ -17,7 +17,7 @@ const designs = [
       "Instagram and Facebook promotional artwork created to increase engagement and brand awareness.",
     category: "Social Media",
     year: "2026",
-    imageUrl: "/design2.png",
+    imageUrl: "/design2.webp",
   },
   {
     id: 3,
@@ -26,7 +26,7 @@ const designs = [
       "Professional branding assets including logo presentation, colour palette and identity layout.",
     category: "Brand Identity",
     year: "2026",
-    imageUrl: "/design3.png",
+    imageUrl: "/design3.webp",
   },
   {
     id: 4,
@@ -35,7 +35,7 @@ const designs = [
       "Minimal and modern business card designed for client networking and brand consistency.",
     category: "Print Design",
     year: "2026",
-    imageUrl: "/design4.png",
+    imageUrl: "/design4.webp",
   },
   {
   id: 5,
@@ -53,7 +53,7 @@ const designs = [
       "Large-format promotional poster designed with strong typography and visual hierarchy.",
     category: "Poster",
     year: "2026",
-    imageUrl: "/design6.png",
+    imageUrl: "/design6.webp",
   },
 ];
 
@@ -63,7 +63,7 @@ const Blog = () => {
   return (
     <section
       id="gallery"
-      className="py-24 bg-swiss-dark px-6 border-t border-white/5 scroll-mt-28"
+      className="py-24 bg-swiss-dark px-6 border-t border-fg/5 scroll-mt-28"
     >
       <div className="max-w-6xl mx-auto">
 
@@ -72,7 +72,7 @@ const Blog = () => {
             Creative / Portfolio
           </span>
 
-          <h2 className="text-4xl font-black text-white tracking-tight">
+          <h2 className="text-4xl font-black text-fg tracking-tight">
             Creative Gallery
             <span className="text-swiss-green">.</span>
           </h2>
@@ -89,7 +89,7 @@ const Blog = () => {
 
             <div
               key={design.id}
-              className="group bg-swiss-navy/30 border border-white/5 rounded-3xl overflow-hidden hover:border-swiss-green/30 transition-all duration-500 flex flex-col"
+              className="group bg-swiss-navy border border-fg/5 rounded-3xl overflow-hidden hover:border-swiss-green/30 transition-all duration-500 flex flex-col"
             >
 
               <div className="overflow-hidden">
@@ -116,7 +116,7 @@ const Blog = () => {
 
                 </div>
 
-                <h3 className="text-xl font-black text-white mb-4 group-hover:text-swiss-green transition-colors">
+                <h3 className="text-xl font-black text-fg mb-4 group-hover:text-swiss-green transition-colors">
                   {design.title}
                 </h3>
 
@@ -150,7 +150,7 @@ const Blog = () => {
             onClick={() => setSelectedDesign(null)}
           ></div>
 
-          <div className="relative bg-swiss-navy rounded-3xl border border-white/10 max-w-4xl w-full overflow-hidden shadow-2xl">
+          <div className="relative bg-swiss-navy rounded-3xl border border-fg/10 max-w-4xl w-full overflow-hidden shadow-2xl">
 
             <img
               src={selectedDesign.imageUrl}
@@ -172,7 +172,7 @@ const Blog = () => {
 
               </div>
 
-              <h3 className="text-3xl font-black text-white mb-5">
+              <h3 className="text-3xl font-black text-fg mb-5">
                 {selectedDesign.title}
               </h3>
 
@@ -180,11 +180,11 @@ const Blog = () => {
                 {selectedDesign.description}
               </p>
 
-              <div className="mt-8 border-t border-white/5 pt-6 flex justify-end">
+              <div className="mt-8 border-t border-fg/5 pt-6 flex justify-end">
 
                 <button
                   onClick={() => setSelectedDesign(null)}
-                  className="px-6 py-3 rounded-xl border border-white/10 text-white hover:bg-white/5 transition-all"
+                  className="px-6 py-3 rounded-xl border border-fg/10 text-fg hover:bg-fg/5 transition-all"
                 >
                   Close Preview
                 </button>

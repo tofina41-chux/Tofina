@@ -15,9 +15,9 @@ const Splash = ({ onComplete }) => {
         <img 
           src="/logo.png" 
           alt="Tofina" 
-          className="h-24 w-auto animate-pulse brightness-110 drop-shadow-[0_0_20px_rgba(1,195,141,0.6)]" 
+          className="h-24 w-auto animate-pulse brightness-110 drop-shadow-[0_0_20px_rgba(232,103,44,0.6)]" 
         />
-        <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 w-48 h-[2px] bg-white/5 overflow-hidden">
+        <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 w-48 h-[2px] bg-fg/5 overflow-hidden">
           <div className="h-full bg-swiss-green animate-progress-load"></div>
         </div>
       </div>

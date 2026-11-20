@@ -1,10 +1,35 @@
 @import "tailwindcss";
 
-@theme {
-  --color-swiss-dark: #191E29;    /* Deep Charcoal */
-  --color-swiss-navy: #132D46;    /* Deep Navy */
-  --color-swiss-green: #01C38D;   /* Electric Green */
-  --color-swiss-grey: #696E79;    /* Slate Grey */
+/* Theme tokens: one set of variables, flipped by html.light */
+:root {
+  color-scheme: dark;
+  --bg: #16181B;
+  --surface: #1F2226;
+  --fg: #F4F1EC;
+  --muted: #A1A5AB;
+  --accent: #E8672C;
+  --on-accent: #16181B;
+  --amber: #F5B82E;
+}
+html.light {
+  color-scheme: light;
+  --bg: #FAF7F2;
+  --surface: #FFFFFF;
+  --fg: #1D2126;
+  --muted: #5E646B;
+  --accent: #C2501B;
+  --on-accent: #FFFFFF;
+  --amber: #B7791F;
+}
+
+@theme inline {
+  --color-swiss-dark: var(--bg);
+  --color-swiss-navy: var(--surface);
+  --color-swiss-green: var(--accent);
+  --color-swiss-grey: var(--muted);
+  --color-fg: var(--fg);
+  --color-on-accent: var(--on-accent);
+  --color-amber: var(--amber);
 }
 
 @keyframes progress-load {
@@ -17,8 +42,8 @@
 }
 
 html, body, #root {
-  background-color: var(--color-swiss-dark);
-  color: white;
+  background-color: var(--bg);
+  color: var(--fg);
   margin: 0;
   padding: 0;
   scroll-behavior: smooth;
@@ -52,47 +77,8 @@ html, body, #root {
   mask-image: linear-gradient(to right, transparent, white 20%, white 80%, transparent);
 }
 
-/* Custom Neubrutalist Light Mode Style Definitions Override */
-html.light body {
-  background-color: #F4F7FA !important;
-  color: #121824 !important;
-}
+/* Light mode: cards need a visible edge on the cream background */
+html.light .bg-swiss-navy { box-shadow: 0 1px 2px rgba(29, 33, 38, 0.06); }
 
-html.light #projects, 
-html.light #blog, 
-html.light #contact,
-html.light main {
-  background-color: #F4F7FA !important;
-}
-
-html.light h2, 
-html.light h3,
-html.light .text-white {
-  color: #121824 !important;
-}
-
-html.light .bg-swiss-navy,
-html.light .bg-swiss-navy\/30 {
-  background-color: #FFFFFF !important;
-  border-color: #121824/10 !important;
-  box-shadow: 4px 4px 0px #121824 !important; /* Premium Crisp High-contrast Neubrutalist Shadow */
-}
-
-html.light .text-swiss-grey {
-  color: #4A5568 !important;
-}
-
-/* Add this right inside your html.light block in index.css */
-html.light #home {
-  background-color: #F3F4F6 !important;
-}
-
-html.light #home p,
-html.light #home div {
-  color: #0A0F1D !important;
-}
-
-/* Ensure the sub-tech tags (Automation, UI/UX) stay readable */
-html.light #home .text-swiss-grey\/60 {
-  color: #4B5563 !important;
-}
+/* Accent text on accent fills */
+.bg-swiss-green { color: var(--on-accent); }

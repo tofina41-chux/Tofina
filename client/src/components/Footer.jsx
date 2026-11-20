@@ -1,15 +1,16 @@
+import { SITE } from '../data/site';
 import { Linkedin, Github, MessageCircle, Instagram } from 'lucide-react';
 
 const Footer = () => {
   const socials = [
-    { name: "LinkedIn", url: "https://www.linkedin.com/in/tofina41-chux", icon: <Linkedin size={20} /> },
-    { name: "GitHub", url: "https://github.com/tofina41-chux", icon: <Github size={20} /> },
-    { name: "WhatsApp", url: "https://wa.me/0743173996", icon: <MessageCircle size={20} /> },
-    { name: "Instagram", url: "https://www.instagram.com/tofina41.chux", icon: <Instagram size={20} /> }
+    { name: "LinkedIn", url: SITE.linkedin, icon: <Linkedin size={20} /> },
+    { name: "GitHub", url: SITE.github, icon: <Github size={20} /> },
+    { name: "WhatsApp", url: SITE.whatsappLink, icon: <MessageCircle size={20} /> },
+    { name: "Instagram", url: SITE.instagram, icon: <Instagram size={20} /> }
   ];
 
   return (
-    <footer className="py-8 bg-swiss-dark border-t border-white/5 px-6">
+    <footer className="py-8 bg-swiss-dark border-t border-fg/5 px-6">
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
         
         {/* Left Side: Logo & Branding */}
@@ -17,9 +18,9 @@ const Footer = () => {
           <img 
             src="/logo.png" 
             alt="Tofina" 
-            className="h-8 w-auto brightness-110 drop-shadow-[0_0_8px_rgba(1,195,141,0.3)]" 
+            className="h-8 w-auto brightness-110 drop-shadow-[0_0_8px_rgba(232,103,44,0.3)]" 
           />
-          <span className="text-swiss-grey font-mono text-[10px] tracking-[0.3em] uppercase border-l border-white/10 pl-4 hidden sm:block">
+          <span className="text-swiss-grey font-mono text-[10px] tracking-[0.3em] uppercase border-l border-fg/10 pl-4 hidden sm:block">
             Creative Technologist
           </span>
         </div>
@@ -33,7 +34,7 @@ const Footer = () => {
               target="_blank" 
               rel="noopener noreferrer"
               aria-label={social.name}
-              className="text-swiss-grey hover:text-swiss-green transition-all duration-300 transform hover:-translate-y-1 hover:drop-shadow-[0_0_10px_rgba(1,195,141,0.5)]"
+              className="text-swiss-grey hover:text-swiss-green transition-all duration-300 transform hover:-translate-y-1 hover:drop-shadow-[0_0_10px_rgba(232,103,44,0.5)]"
             >
               {social.icon}
             </a>
