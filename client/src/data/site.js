@@ -136,3 +136,17 @@ export const PROJECTS = [
     githubLink: 'https://github.com/tofina41-chux/Tofina',
   },
 ];
+
+
+  {
+    id: 'getgig',
+    title: 'GetGig',
+    kind: 'Web Application',
+    type: 'app',
+    description:
+      'A social freelancing platform where clients post gigs with clear requirements and deadlines, and freelancers apply with tailored proposals. Separate client and freelancer dashboards, deadline-aware gig states and in-app notifications, with the landing page editable from the Django admin.',
+    tags: ['Django', 'Tailwind CSS', 'PWA', 'Marketplace'],
+    image: '/getgig.webp',
+    liveLink: 'https://get-gig.vercel.app/',
+    githubLink: 'https://github.com/tofina41-chux/GetGig',
+  },
